@@ -46,6 +46,66 @@
   resolved "https://registry.npmjs.org/@discordjs/util/-/util-0.2.0.tgz"
   integrity sha512-/8qNbebFzLWKOOg+UV+RB8itp4SmU5jw0tBUD3ifElW6rYNOj1Ku5JaSW7lLl/WgjjxF01l/1uQPCzkwr110vg==
 
+"@napi-rs/canvas-android-arm64@0.1.40":
+  version "0.1.40"
+  resolved "https://registry.yarnpkg.com/@napi-rs/canvas-android-arm64/-/canvas-android-arm64-0.1.40.tgz#6608d6440d113b0bc5f7e1e4d49cfd24c9d770e4"
+  integrity sha512-98WNQWr6nRThV9ot4tI1Aevo020Qg3WP3NVH0Ko+7Ba6Rh7xd5XDCYgxlATFL0IlBSRm7z6BbgT820tPJh+MYQ==
+
+"@napi-rs/canvas-darwin-arm64@0.1.40":
+  version "0.1.40"
+  resolved "https://registry.yarnpkg.com/@napi-rs/canvas-darwin-arm64/-/canvas-darwin-arm64-0.1.40.tgz#c180356b932cacac4cd79d40b239c91a785a7692"
+  integrity sha512-RoJQaZyJCBFGEm6H7sXyjzcYoothIvENyEuyMqVgI26NAOIdHefwQn/i/gtMnLDmOaT8afrYQbRwio4vNp1RHw==
+
+"@napi-rs/canvas-darwin-x64@0.1.40":
+  version "0.1.40"
+  resolved "https://registry.yarnpkg.com/@napi-rs/canvas-darwin-x64/-/canvas-darwin-x64-0.1.40.tgz#b91f1c16857a9f9fa9480e5c97014fc0444679e4"
+  integrity sha512-JqspMa5Ri2k5OKpTMMetpSVNQXEw/UAB3VhxsGQVHN6fi9oDopnuuLCxT0W/CA2aVQvZ1kH4Bsdyje98gSRDOw==
+
+"@napi-rs/canvas-linux-arm-gnueabihf@0.1.40":
+  version "0.1.40"
+  resolved "https://registry.yarnpkg.com/@napi-rs/canvas-linux-arm-gnueabihf/-/canvas-linux-arm-gnueabihf-0.1.40.tgz#29d03193fa7f8c2e8f6c326a5fed45175f0a964e"
+  integrity sha512-D8xURVkRlJ5r5wCjF4PFQjFGmNqyYWqDAdM7EMXWBfg02tIx09oOMtxm57ivs5iJYEdnjlIxpKvz1KZaGu9tKw==
+
+"@napi-rs/canvas-linux-arm64-gnu@0.1.40":
+  version "0.1.40"
+  resolved "https://registry.yarnpkg.com/@napi-rs/canvas-linux-arm64-gnu/-/canvas-linux-arm64-gnu-0.1.40.tgz#6f91752c99a7a77654801aa99c0fb3ba7b8c9491"
+  integrity sha512-xWVdBAiK5AubwzQTD/tmhJQb5eMYgjeIFZvCGke0hgyn5haun+U7InX4egvDo9VkDRmYz+/EUAPTjh3lsm7U5w==
+
+"@napi-rs/canvas-linux-arm64-musl@0.1.40":
+  version "0.1.40"
+  resolved "https://registry.yarnpkg.com/@napi-rs/canvas-linux-arm64-musl/-/canvas-linux-arm64-musl-0.1.40.tgz#cdda58ec676a236bc37a61e1afd7e4d86df085ff"
+  integrity sha512-yPHrJigBj+ad83fuLirOdFsjfISkY7iJmO1HxuE78uwttHQA1KX32xsvFrg4KmVoXTX0wCAEnENlRnW8urr7LA==
+
+"@napi-rs/canvas-linux-x64-gnu@0.1.40":
+  version "0.1.40"
+  resolved "https://registry.yarnpkg.com/@napi-rs/canvas-linux-x64-gnu/-/canvas-linux-x64-gnu-0.1.40.tgz#267585b7367a87fdc7c8644711d4efeea564c692"
+  integrity sha512-TC62vdnNxkrAtMyiTGZhrKSqTVV1mV+EBK/76hxNpGLtj+eHXLmD3B+PaM1iXshMJ9ueU+SCzq9Q7sora9docw==
+
+"@napi-rs/canvas-linux-x64-musl@0.1.40":
+  version "0.1.40"
+  resolved "https://registry.yarnpkg.com/@napi-rs/canvas-linux-x64-musl/-/canvas-linux-x64-musl-0.1.40.tgz#41fba394b52969faa9ec75b5a209b2234caee578"
+  integrity sha512-C6mr9MADSFq10FRRwWmPhh7vMpYfJH+RX7bWoBks5I72LxdtvqTEiD/ssBbMET9HxkT7WOv4Tbhf5EHII9qBeQ==
+
+"@napi-rs/canvas-win32-x64-msvc@0.1.40":
+  version "0.1.40"
+  resolved "https://registry.yarnpkg.com/@napi-rs/canvas-win32-x64-msvc/-/canvas-win32-x64-msvc-0.1.40.tgz#f22861128f5ce39e0661864ea3669530b5e7cc3c"
+  integrity sha512-TaxpeQXmSaI7Gz8ygUGlF6GnWqttZ1SL6qm0HrFu0gjhYQioHqVZ0a9k1yUcMVSCx3qxjy12Jf/tW2x7PCwhuQ==
+
+"@napi-rs/canvas@^0.1.29":
+  version "0.1.40"
+  resolved "https://registry.yarnpkg.com/@napi-rs/canvas/-/canvas-0.1.40.tgz#c2d02dddc9821e45dac68ba50360e2651deb4eaf"
+  integrity sha512-6yC43yUAclXeChZEeMTZNN3sSloHUZG8gdMvbanboVREcUYZWRPAuSl5iitm/UemUEv3tk+6l3ZPkEsdmRgCOA==
+  optionalDependencies:
+    "@napi-rs/canvas-android-arm64" "0.1.40"
+    "@napi-rs/canvas-darwin-arm64" "0.1.40"
+    "@napi-rs/canvas-darwin-x64" "0.1.40"
+    "@napi-rs/canvas-linux-arm-gnueabihf" "0.1.40"
+    "@napi-rs/canvas-linux-arm64-gnu" "0.1.40"
+    "@napi-rs/canvas-linux-arm64-musl" "0.1.40"
+    "@napi-rs/canvas-linux-x64-gnu" "0.1.40"
+    "@napi-rs/canvas-linux-x64-musl" "0.1.40"
+    "@napi-rs/canvas-win32-x64-msvc" "0.1.40"
+
 "@sapphire/async-queue@^1.5.0":
   version "1.5.0"
   resolved "https://registry.npmjs.org/@sapphire/async-queue/-/async-queue-1.5.0.tgz"
@@ -63,6 +123,13 @@
   version "3.4.2"
   resolved "https://registry.npmjs.org/@sapphire/snowflake/-/snowflake-3.4.2.tgz"
   integrity sha512-KJwlv5gkGjs1uFV7/xx81n3tqgBwBJvH94n1xDyH3q+JSmtsMeSleJffarEBfG2yAFeJiFA4BnGOK6FFPHc19g==
+
+"@skyra/gifenc@^1.0.0":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@skyra/gifenc/-/gifenc-1.0.1.tgz#7330de98944fd0b46405ccb8712d2e7114b3ab2e"
+  integrity sha512-kxu65ZchumEKWnFwPwy+/T2+/lzQZtwK6f5VTG3OJIBqvfdyRyxrWvbeBHT6G8p6nBEuxSwyI3YXTv2koXvHVQ==
+  dependencies:
+    tslib "^2.4.0"
 
 "@tokenizer/token@^0.3.0":
   version "0.3.0"
@@ -105,6 +172,23 @@ busboy@^1.6.0:
   integrity sha512-8SFQbg/0hQ9xy3UNTB0YEnsNBbWfhf7RtnzpL7TkBiTBRfrQ9Fxcnz7VJsleJpyp6rVLvXiuORqjlHi5q+PYuA==
   dependencies:
     streamsearch "^1.1.0"
+
+canvacord@^5.4.8:
+  version "5.4.8"
+  resolved "https://registry.yarnpkg.com/canvacord/-/canvacord-5.4.8.tgz#a458b99acf8b45d88d06d4c40e69fd9560d0fc11"
+  integrity sha512-hxZ821JzQNCw/WkadVamFZDHvgzmTe9hfla1rG6c0cZoLwAAaSoQ3PPjpaTFbfkiYLeJugdlYnzm5sCJDsT5bA==
+  dependencies:
+    "@napi-rs/canvas" "^0.1.29"
+    "@skyra/gifenc" "^1.0.0"
+    chalk "^5.0.1"
+    moment "^2.29.4"
+    moment-duration-format "^2.3.2"
+    node-fetch "2.6.7"
+
+chalk@^5.0.1:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/chalk/-/chalk-5.2.0.tgz#249623b7d66869c673699fb66d65723e54dfcfb3"
+  integrity sha512-ree3Gqw/nazQAPuJJEy+avdl7QfZMcUvmHIKgEZkGL+xOBzRvup5Hxo6LHuMceSxOabuJLJm5Yp/92R9eMmMvA==
 
 debug@4.x:
   version "4.3.4"
@@ -196,6 +280,16 @@ module-alias@^2.2.2:
   resolved "https://registry.npmjs.org/module-alias/-/module-alias-2.2.2.tgz"
   integrity sha512-A/78XjoX2EmNvppVWEhM2oGk3x4lLxnkEA4jTbaK97QKSDjkIoOsKQlfylt/d3kKKi596Qy3NP5XrXJ6fZIC9Q==
 
+moment-duration-format@^2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/moment-duration-format/-/moment-duration-format-2.3.2.tgz#5fa2b19b941b8d277122ff3f87a12895ec0d6212"
+  integrity sha512-cBMXjSW+fjOb4tyaVHuaVE/A5TqkukDWiOfxxAjY+PEqmmBQlLwn+8OzwPiG3brouXKY5Un4pBjAeB6UToXHaQ==
+
+moment@^2.29.4:
+  version "2.29.4"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.4.tgz#3dbe052889fe7c1b2ed966fcb3a77328964ef108"
+  integrity sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==
+
 mongodb-connection-string-url@^2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/mongodb-connection-string-url/-/mongodb-connection-string-url-2.6.0.tgz#57901bf352372abdde812c81be47b75c6b2ec5cf"
@@ -249,6 +343,13 @@ ms@2.1.3, ms@^2.1.3:
   version "2.1.3"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.3.tgz#574c8138ce1d2b5861f0b44579dbadd60c6615b2"
   integrity sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==
+
+node-fetch@2.6.7:
+  version "2.6.7"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.7.tgz#24de9fba827e3b4ae44dc8b20256a379160052ad"
+  integrity sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==
+  dependencies:
+    whatwg-url "^5.0.0"
 
 peek-readable@^5.0.0:
   version "5.0.0"
@@ -348,12 +449,17 @@ tr46@^3.0.0:
   dependencies:
     punycode "^2.1.1"
 
+tr46@~0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/tr46/-/tr46-0.0.3.tgz#8184fd347dac9cdc185992f3a6622e14b9d9ab6a"
+  integrity sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==
+
 ts-mixer@^6.0.3:
   version "6.0.3"
   resolved "https://registry.npmjs.org/ts-mixer/-/ts-mixer-6.0.3.tgz"
   integrity sha512-k43M7uCG1AkTyxgnmI5MPwKoUvS/bRvLvUb7+Pgpdlmok8AoqmUaZxUUw8zKM5B1lqZrt41GjYgnvAi0fppqgQ==
 
-tslib@^2.5.0:
+tslib@^2.4.0, tslib@^2.5.0:
   version "2.5.0"
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.5.0.tgz"
   integrity sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==
@@ -370,6 +476,11 @@ util-deprecate@^1.0.1:
   resolved "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz"
   integrity sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==
 
+webidl-conversions@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-3.0.1.tgz#24534275e2a7bc6be7bc86611cc16ae0a5654871"
+  integrity sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==
+
 webidl-conversions@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-7.0.0.tgz#256b4e1882be7debbf01d05f0aa2039778ea080a"
@@ -382,6 +493,14 @@ whatwg-url@^11.0.0:
   dependencies:
     tr46 "^3.0.0"
     webidl-conversions "^7.0.0"
+
+whatwg-url@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/whatwg-url/-/whatwg-url-5.0.0.tgz#966454e8765462e37644d3626f6742ce8b70965d"
+  integrity sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==
+  dependencies:
+    tr46 "~0.0.3"
+    webidl-conversions "^3.0.0"
 
 ws@^8.13.0:
   version "8.13.0"

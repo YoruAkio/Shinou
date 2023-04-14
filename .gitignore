@@ -1,5 +1,6 @@
 # Local Files
 config.json
+yarn.lock
 
 # Logs
 logs

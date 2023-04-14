@@ -26,5 +26,4 @@ eventHandler(client);
     }
 })();
 
-client.config = require("../config.json");
 client.login(process.env.TOKEN);

@@ -17,6 +17,7 @@
         "url": "https://github.com/YoruAkio/Shinou/issues"
     },
     "dependencies": {
+        "canvacord": "^5.4.8",
         "discord.js": "^14.7.1",
         "dotenv": "^16.0.3",
         "module-alias": "^2.2.2",
@@ -27,6 +28,7 @@
         "@root": ".",
         "@commands": "src/commands",
         "@events": "src/events",
+        "@models": "src/models",
         "@utils": "src/utils"
     }
 }
