@@ -1,7 +1,7 @@
 const { Client, Interaction } = require("discord.js");
 const User = require("@models/User");
 
-const dailyAmount = math.floor(Math.random() * 25000) + 1;
+const dailyAmount = Math.floor(Math.random() * 25000) + 1;
 
 module.exports = {
     name: "daily",
