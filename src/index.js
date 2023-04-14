@@ -12,8 +12,6 @@ const client = new Client({
     ],
 });
 
-eventHandler(client);
-
 (async () => {
     try {
         mongoose.set("strictQuery", false);
