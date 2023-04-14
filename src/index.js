@@ -1,5 +1,6 @@
 require("dotenv").config();
 const { Client, IntentsBitField } = require("discord.js");
+const eventHandler = require("./handlers/eventHandler");
 
 const client = new Client({
     intents: [
@@ -10,19 +11,7 @@ const client = new Client({
     ],
 });
 
-client.on("ready", (c) => {
-    console.log(`✅ ${c.user.tag} is online.`);
-});
+eventHandler(client);
 
-client.on("interactionCreate", (interaction) => {
-    if (!interaction.isChatInputCommand()) return;
-
-    if (interaction.commandName === "add") {
-        const num1 = interaction.options.get("first-number").value;
-        const num2 = interaction.options.get("second-number").value;
-
-        interaction.reply(`The sum is ${num1 + num2}`);
-    }
-});
-
+client.config = require("../config.json");
 client.login(process.env.TOKEN);

@@ -1,23 +1,32 @@
 {
-  "name": "shinou",
-  "version": "0.0.1",
-  "description": "Assistant for your discord server will help your discord server a better place to live.",
-  "main": "src/index.js",
-  "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
-  },
-  "author": "YoruAkio",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/YoruAkio/Shinou.git"
-  },
-  "bugs": {
-    "url": "https://github.com/YoruAkio/Shinou/issues"
-  },
-  "dependencies": {
-    "discord.js": "^14.7.1",
-    "dotenv": "^16.0.3"
-  }
+    "name": "shinou",
+    "version": "0.0.1",
+    "description": "Assistant for your discord server will help your discord server a better place to live.",
+    "main": "src/index.js",
+    "scripts": {
+        "start": "node .",
+        "dev": "nodemon index.js"
+    },
+    "author": "YoruAkio",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/YoruAkio/Shinou.git"
+    },
+    "bugs": {
+        "url": "https://github.com/YoruAkio/Shinou/issues"
+    },
+    "dependencies": {
+        "discord.js": "^14.7.1",
+        "dotenv": "^16.0.3",
+        "module-alias": "^2.2.2",
+        "mongoose": "^7.0.3",
+        "ms": "^2.1.3"
+    },
+    "_moduleAliases": {
+        "@root": ".",
+        "@commands": "src/commands",
+        "@events": "src/events",
+        "@utils": "src/utils"
+    }
 }
