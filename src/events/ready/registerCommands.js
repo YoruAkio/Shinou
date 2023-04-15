@@ -1,5 +1,5 @@
 require("module-alias/register");
-const { testServer } = require("@root/config.json");
+const config = require("@root/config");
 const areCommandsDifferent = require("@utils/areCommandsDifferent");
 const getApplicationCommands = require("@utils/getApplicationCommands");
 const getLocalCommands = require("@utils/getLocalCommands");
@@ -9,7 +9,7 @@ module.exports = async (client) => {
         const localCommands = getLocalCommands();
         const applicationCommands = await getApplicationCommands(
             client,
-            testServer
+            config.BOT.TEST_SERVER_ID
         );
 
         for (const localCommand of localCommands) {

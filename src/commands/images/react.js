@@ -1,6 +1,6 @@
 const { EmbedBuilder, ApplicationCommandOptionType } = require("discord.js");
-// const { getJson } = require("@utils/HttpUtils");
 const { EMBED_COLORS } = require("@root/config");
+const { getJson } = require("@utils/httpUtils");
 const NekosLife = require("nekos.life");
 const neko = new NekosLife();
 
