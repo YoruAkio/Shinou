@@ -1,5 +1,6 @@
-const { devs, testServer } = require("../../../config.json");
-const getLocalCommands = require("../../utils/getLocalCommands");
+require("module-alias/register");
+const { devs, testServer } = require("@root/config.json");
+const getLocalCommands = require("@utils/getLocalCommands");
 
 module.exports = async (client, interaction) => {
     if (!interaction.isChatInputCommand()) return;
@@ -56,6 +57,16 @@ module.exports = async (client, interaction) => {
                     });
                     return;
                 }
+            }
+        }
+
+        if (commandObject.isNsfw) {
+            if (!interaction.channel.nsfw) {
+                interaction.reply({
+                    content: "This command can only be ran in NSFW channels.",
+                    ephemeral: true,
+                });
+                return;
             }
         }
 
