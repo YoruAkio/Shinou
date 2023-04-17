@@ -1,6 +1,7 @@
 # Local Files
 config.json
 yarn.lock
+package-lock.json
 
 # Logs
 logs
