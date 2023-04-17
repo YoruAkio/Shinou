@@ -18,8 +18,6 @@ module.exports = {
                 .setImage(imageUrl)
                 .setFooter({ text: `Requested By ${interaction.user.tag}` });
             await interaction.followUp({ embeds: [embed] });
-
-            console.log(imageUrl);
         })();
     },
 };

@@ -1,8 +1,11 @@
 require("module-alias/register");
 const figlet = require("figlet");
 const gradient = require("gradient-string")
+const { dependencies } = require("@root/package.json");
 
-console.log(gradient.instagram(figlet.textSync("Hello, World!", { font: "ANSI Shadow", horizontalLayout: 'full', verticalLayout: 'full' })))
+console.log(dependencies["discord.js"])
+
+// console.log(gradient.instagram(figlet.textSync("Hello, World!", { font: "ANSI Shadow", horizontalLayout: 'full', verticalLayout: 'full' })))
 
 // asciiArt("Hello World!");
 

@@ -32,6 +32,7 @@
         "nekobot-api": "^2.1.0",
         "nekos.life": "^3.0.0",
         "node-fetch": "2",
+        "nodemon": "^2.0.22",
         "pino": "^8.11.0",
         "pino-pretty": "^10.0.0",
         "sourcebin_js": "^0.0.3-ignore",
