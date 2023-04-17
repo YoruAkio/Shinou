@@ -3,17 +3,10 @@ const { EmbedBuilder } = require("discord.js");
 module.exports = {
     name: "uptime",
     description: "Check the bot's uptime!",
+    devOnly: true,
 
     callback: async (client, interaction) => {
         await interaction.deferReply();
-
-        // const reply = await interaction.fetchReply();
-
-        // const ping = reply.createdTimestamp - interaction.createdTimestamp;
-
-        // interaction.editReply(
-        //     `Current Uptime is ${interaction.client.uptime} | Websocket: ${client.ws.ping}ms`
-        // );
 
         const ms = interaction.client.uptime;
         const sec = Math.floor((ms / 1000) % 60).toString();

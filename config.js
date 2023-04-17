@@ -1,6 +1,6 @@
 module.exports = {
     BOT: {
-        TEST_SERVER: "962411933829562430",
+        TEST_SERVER_ID: "963596898869051443",
         CLIENT_ID: "920954192523329546",
         DEVS: ["919841186246692886"],
     },

@@ -1,9 +1,27 @@
 require("dotenv").config();
-const { Client, IntentsBitField } = require("discord.js");
+require("module-alias/register");
+require("@utils/consoleRunning");
+
+const { Client, IntentsBitField, ActivityType } = require("discord.js");
 const mongoose = require("mongoose");
 const eventHandler = require("./handlers/eventHandler");
+const languages = require("./languages/en.json");
 
 const client = new Client({
+    // Status of the bot
+    presence: {
+        status: "idle",
+        afk: true,
+        activities: [
+            {
+                name: "Doing something with discord stuff",
+                type: ActivityType.Competing,
+            },
+        ],
+    },
+
+    // Required in Discord.js v14
+    // https://discord-api-types.dev/api/discord-api-types-v10/enum/GatewayIntentBits
     intents: [
         IntentsBitField.Flags.Guilds,
         IntentsBitField.Flags.GuildMembers,
@@ -11,6 +29,8 @@ const client = new Client({
         IntentsBitField.Flags.MessageContent,
     ],
 });
+
+client.translate = languages;
 
 (async () => {
     try {

@@ -12,6 +12,7 @@ const fontType = [
     "Ghost",
 ];
 const { ApplicationCommandOptionType, EmbedBuilder } = require("discord.js");
+const { EMBED_COLORS } = require("@root/config")
 
 module.exports = {
     name: "ascii",
