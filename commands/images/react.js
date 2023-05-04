@@ -1,6 +1,5 @@
 const { EmbedBuilder, ApplicationCommandOptionType } = require("discord.js");
-const { EMBED_COLORS } = require("@root/config");
-const { getJson } = require("@utils/httpUtils");
+const { getJson } = require("@root/Utils/httpUtils");
 const NekosLife = require("nekos.life");
 const neko = new NekosLife();
 
@@ -33,8 +32,32 @@ module.exports = {
             })),
         },
     ],
-    callback: async (client, interaction) => {
-        await interaction.deferReply();
+    kioRun: async (client, message, args) => {
+        if (!args[0]) {
+            message.channel.send(
+                "Please provide a category of reaction image!"
+            );
+
+            const listCategory = new EmbedBuilder()
+                .setAuthor({ name: "Reaction Categories" })
+                .setColor(client.colors.PINK)
+                .setDescription(choices.map((ch) => `\`${ch}\``).join(", "));
+
+            return message.channel.send({ embeds: [listCategory] });
+        }
+
+        if (!choices.includes(args[0])) {
+            message.channel.send(
+                "That is not a valid category of reaction image!"
+            );
+
+            const listCategory = new EmbedBuilder()
+                .setAuthor({ name: "Reaction Categories" })
+                .setColor(client.colors.PINK)
+                .setDescription(choices.map((ch) => `\`${ch}\``).join(", "));
+
+            return message.channel.send({ embeds: [listCategory] });
+        }
 
         const genReaction = async (category, user) => {
             try {
@@ -52,18 +75,55 @@ module.exports = {
                 // neko api
                 else {
                     imageUrl = (await neko[category]()).url;
-                    console.log(imageUrl);
                 }
 
                 return new EmbedBuilder()
                     .setAuthor({ name: `${category}!` })
-                    .setColor(EMBED_COLORS.BOT_EMBED)
+                    .setColor(client.colors.PINK)
                     .setImage(imageUrl)
                     .setFooter({ text: `Requested By ${user.tag}` });
             } catch (ex) {
                 return new EmbedBuilder()
                     .setAuthor({ name: "Error!" })
-                    .setColor(EMBED_COLORS.ERROR)
+                    .setColor(client.colors.PINK)
+                    .setDescription("Failed to fetch meme. Try again!")
+                    .setFooter({ text: `Requested By ${user.tag}` });
+            }
+        };
+
+        const embed = await genReaction(args[0], message.author);
+        message.channel.send({ embeds: [embed] });
+    },
+    kioSlashRun: async (client, interaction) => {
+        await interaction.deferReply();
+
+        const genReaction = async (category, user) => {
+            try {
+                let imageUrl;
+
+                // some-random api
+                if (category === "wink") {
+                    const response = await getJson(
+                        "https://some-random-api.ml/animu/wink"
+                    );
+                    if (!response.success) throw new Error("API error");
+                }
+
+                // neko api
+                else {
+                    imageUrl = (await neko[category]()).url;
+                    console.log(imageUrl);
+                }
+
+                return new EmbedBuilder()
+                    .setAuthor({ name: `${category}!` })
+                    .setColor(client.colors.PINK)
+                    .setImage(imageUrl)
+                    .setFooter({ text: `Requested By ${user.tag}` });
+            } catch (ex) {
+                return new EmbedBuilder()
+                    .setAuthor({ name: "Error!" })
+                    .setColor(client.colors.PINK)
                     .setDescription("Failed to fetch meme. Try again!")
                     .setFooter({ text: `Requested By ${user.tag}` });
             }

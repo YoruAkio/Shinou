@@ -1,6 +1,6 @@
 const nekos = require("nekos.life");
 const neko = new nekos();
-const httpUtils = require("@utils/httpUtils"); 
+const httpUtils = require("@root/Utils/httpUtils");
 
 async function getNeko(category) {
     return (await neko[category]()).url;

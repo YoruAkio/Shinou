@@ -42,7 +42,7 @@ function sendWebhook(content, err) {
     const errString = err?.stack || err;
 
     const embed = new EmbedBuilder()
-        .setColor(config.EMBED_COLORS.ERROR)
+        .setColor(client.colors.PINK)
         .setAuthor({ name: err?.name || "Error" });
 
     if (errString)

@@ -1,5 +1,4 @@
 const { EmbedBuilder } = require("discord.js");
-const { EMBED_COLORS } = require("@root/config");
 const { NekoBot } = require("nekobot-api");
 const neko = new NekoBot();
 
@@ -7,13 +6,28 @@ module.exports = {
     name: "randhentai",
     description: "Generates a random hentai image",
     isNsfw: true,
-    callback: async (client, interaction) => {
+    kioRun: async (client, message, args) => {
+        const imageUrl = await neko.get("hentai");
+
+        const embed = new EmbedBuilder()
+            .setAuthor({ name: "Random Hentai" })
+            .setDescription("Here's a random hentai image for you!")
+            .setColor(client.colors.PINK)
+            .setImage(imageUrl)
+            .setFooter({
+                text: `Requested By ${message.author.tag}`,
+                iconUrl: message.author.displayAvatarURL(),
+            });
+
+        await message.reply({ embeds: [embed] });
+    },
+    kioSlashRun: async (client, interaction) => {
         await interaction.deferReply();
 
         const imageUrl = await neko.get("hentai");
 
         const embed = new EmbedBuilder()
-            .setColor(EMBED_COLORS.BOT_EMBED)
+            .setColor(client.colors.PINK)
             .setImage(imageUrl)
             .setFooter({ text: `Requested By ${interaction.user.tag}` });
 

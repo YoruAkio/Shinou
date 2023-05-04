@@ -1,9 +1,11 @@
+require("module-alias/register");
+
 const {
     Client,
     Interaction,
     ApplicationCommandOptionType,
 } = require("discord.js");
-const User = require("@models/User");
+const User = require("@root/Models/User");
 
 module.exports = {
     name: "balance",
@@ -21,7 +23,7 @@ module.exports = {
      * @param {Client} client
      * @param {Interaction} interaction
      */
-    callback: async (client, interaction) => {
+    kioRun: async (client, interaction) => {
         if (!interaction.inGuild()) {
             interaction.reply({
                 content: "You can only run this command inside a server.",

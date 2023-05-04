@@ -4,7 +4,7 @@ module.exports = {
     name: "uptime",
     description: "Check the bot's uptime!",
 
-    callback: async (client, interaction) => {
+    kioRun: async (client, interaction) => {
         await interaction.deferReply();
 
         // const reply = await interaction.fetchReply();

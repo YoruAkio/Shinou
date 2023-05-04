@@ -1,11 +1,27 @@
 const { EmbedBuilder } = require("discord.js");
-const { EMBED_COLORS } = require("@root/config");
-const { getNeko, getWaifu } = require("@utils/apiUtils");
+const { getWaifu } = require("@utils/apiUtils");
 
 module.exports = {
     name: "randwaifu",
-    description: "Generates a random waifu image",
-    callback: async (client, interaction) => {
+    description: "Getting a random waifu image",
+
+    kioRun: async (client, message, args) => {
+        let imageUrl;
+        (async () => {
+            imageUrl = await getWaifu("waifu");
+            const embed = new EmbedBuilder()
+                .setAuthor({ name: "Random Waifu" })
+                .setDescription("Here's a random waifu image for you!")
+                .setColor(client.colors.PINK)
+                .setImage(imageUrl)
+                .setFooter({
+                    text: `Requested By ${message.author.tag}`,
+                    iconUrl: message.author.displayAvatarURL(),
+                });
+            await message.reply({ embeds: [embed] });
+        })();
+    },
+    kioSlashRun: async (client, interaction) => {
         await interaction.deferReply();
 
         let imageUrl;
@@ -14,43 +30,13 @@ module.exports = {
             const embed = new EmbedBuilder()
                 .setAuthor({ name: "Random Waifu" })
                 .setDescription("Here's a random waifu image for you!")
-                .setColor(EMBED_COLORS.BOT_EMBED)
+                .setColor(client.colors.PINK)
                 .setImage(imageUrl)
-                .setFooter({ text: `Requested By ${interaction.user.tag}` });
+                .setFooter({
+                    text: `Requested By ${interaction.user.tag}`,
+                    iconUrl: interaction.user.displayAvatarURL(),
+                });
             await interaction.followUp({ embeds: [embed] });
-
-            console.log(imageUrl);
         })();
     },
 };
-
-// Nekos.life Category List
-// tickle
-// slap
-// smug
-// baka
-// poke
-// pat
-// neko
-// nekoGif
-// meow
-// lizard
-// kiss
-// hug
-// foxGirl
-// feed
-// cuddle
-// woof
-// why
-// catText
-// OwOify
-// eightBall
-// fact
-// kemonomimi
-// holo
-// spoiler
-// avatar
-// waifu
-// gecg
-// goose
-// wallpaper

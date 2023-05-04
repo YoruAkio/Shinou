@@ -1,6 +1,6 @@
 require("module-alias/register");
-const { devs, testServer } = require("@root/config.json");
-const getLocalCommands = require("@utils/getLocalCommands");
+const { Bot } = require("@root/config");
+const getLocalCommands = require("@root/Utils/getLocalCommands");
 
 module.exports = async (client, interaction) => {
     if (!interaction.isChatInputCommand()) return;
@@ -14,8 +14,11 @@ module.exports = async (client, interaction) => {
 
         if (!commandObject) return;
 
+        /**
+         * @param {devOnly} Boolean
+         */
         if (commandObject.devOnly) {
-            if (!devs.includes(interaction.member.id)) {
+            if (!Bot.devs.includes(interaction.member.id)) {
                 interaction.reply({
                     content: "Only developers are allowed to run this command.",
                     ephemeral: true,
@@ -24,8 +27,11 @@ module.exports = async (client, interaction) => {
             }
         }
 
+        /**
+         * @param {testOnly} Boolean
+         */
         if (commandObject.testOnly) {
-            if (!(interaction.guild.id === testServer)) {
+            if (!(interaction.guild.id === Bot.test_server)) {
                 interaction.reply({
                     content: "This command cannot be ran here.",
                     ephemeral: true,
@@ -34,7 +40,10 @@ module.exports = async (client, interaction) => {
             }
         }
 
-        if (commandObject.permissionsRequired?.length) {
+        /**
+         * @type {Array<PermissionResolvable>}
+         */
+        if (commandObject.userPermission?.length) {
             for (const permission of commandObject.permissionsRequired) {
                 if (!interaction.member.permissions.has(permission)) {
                     interaction.reply({
@@ -42,10 +51,18 @@ module.exports = async (client, interaction) => {
                         ephemeral: true,
                     });
                     return;
+                } else {
+                    interaction.reply({
+                        content: "All permissions are ok.",
+                        ephemeral: true,
+                    });
                 }
             }
         }
 
+        /**
+         * @type {Array<PermissionResolvable>}
+         */
         if (commandObject.botPermissions?.length) {
             for (const permission of commandObject.botPermissions) {
                 const bot = interaction.guild.members.me;
@@ -60,6 +77,9 @@ module.exports = async (client, interaction) => {
             }
         }
 
+        /**
+         * @param {isNsfw} Boolean
+         */
         if (commandObject.isNsfw) {
             if (!interaction.channel.nsfw) {
                 interaction.reply({
@@ -70,7 +90,7 @@ module.exports = async (client, interaction) => {
             }
         }
 
-        await commandObject.callback(client, interaction);
+        await commandObject.kioSlashRun(client, interaction);
     } catch (error) {
         console.log(`There was an error running this command: ${error}`);
     }

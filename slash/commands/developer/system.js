@@ -1,14 +1,14 @@
+require("module-alias/register");
 const { EmbedBuilder } = require("discord.js");
-const { EMBED_COLORS } = require("@root/config");
 const { get } = require("systeminformation");
-const { dependencies } = require("@root/package.json")
+const { dependencies } = require("@root/package.json");
 
 module.exports = {
     name: "system",
     description: "Get the system basic info",
 
-    callback: async (client, interaction) => {
-	await interaction.deferReply()
+    kioRun: async (client, interaction) => {
+        await interaction.deferReply();
         await interaction.editReply(
             interaction.client.translate.commands.system.loading
         );
