@@ -15,4 +15,7 @@ module.exports = {
     WEBHOOKS: {
         ERROR_LOGS: "",
     },
+    Akio: {
+        Awwnime: "Aww"
+    }
 };
