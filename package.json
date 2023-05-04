@@ -2,10 +2,11 @@
     "name": "shinou",
     "version": "0.0.1",
     "description": "Assistant for your discord server will help your discord server a better place to live.",
-    "main": "src/index.js",
+    "main": "index.js",
     "scripts": {
         "start": "node .",
-        "dev": "nodemon index.js"
+        "dev": "nodemon index.js",
+        "test": "node test.js"
     },
     "author": "YoruAkio",
     "license": "MIT",
@@ -19,6 +20,7 @@
     "dependencies": {
         "@vitalets/google-translate-api": "^9.1.0",
         "canvacord": "^5.4.8",
+        "common-tags": "^1.8.2",
         "discord.js": "^14.7.1",
         "dotenv": "^16.0.3",
         "figlet": "^1.6.0",
@@ -34,14 +36,20 @@
         "nodemon": "^2.0.22",
         "pino": "^8.11.0",
         "pino-pretty": "^10.0.0",
+        "promisify": "^0.0.3",
         "sourcebin_js": "^0.0.3-ignore",
         "systeminformation": "^5.17.12"
     },
     "_moduleAliases": {
         "@root": ".",
-        "@commands": "src/commands",
-        "@events": "src/events",
-        "@models": "src/models",
-        "@utils": "src/utils"
+        "@commands": "Commands",
+        "@events": "Events",
+        "@models": "Models",
+        "@utils": "Utils",
+        "@structures": "Structures",
+        "@helpers": "Helpers"
+    },
+    "devDependencies": {
+        "@types/module-alias": "^2.0.1"
     }
 }

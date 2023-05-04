@@ -1,11 +1,16 @@
 require("dotenv").config();
 require("module-alias/register");
-require("@utils/consoleRunning");
+require("@root/Utils/consoleRunning.js");
 
-const { Client, IntentsBitField, ActivityType } = require("discord.js");
-const mongoose = require("mongoose");
-const eventHandler = require("./handlers/eventHandler");
-const languages = require("./languages/en.json");
+const {
+    Client,
+    IntentsBitField,
+    ActivityType,
+    Collection,
+    Partials,
+} = require("discord.js");
+const languages = require("./Languages/en.json");
+const Database = require("./Utils/databaseUtils");
 
 const client = new Client({
     // Status of the bot
@@ -27,21 +32,30 @@ const client = new Client({
         IntentsBitField.Flags.GuildMembers,
         IntentsBitField.Flags.GuildMessages,
         IntentsBitField.Flags.MessageContent,
+        IntentsBitField.Flags.DirectMessages,
+        IntentsBitField.Flags.DirectMessageTyping,
+        IntentsBitField.Flags.DirectMessageReactions,
     ],
+    partials: [
+        Partials.User,
+        Partials.Message,
+        Partials.Channel,
+        Partials.Reaction,
+    ],
+    restRequestTimeout: 30000,
 });
 
+module.exports = client;
+require("./Handlers/index.js")(client);
+
+client.commands = new Collection();
+client.slashCommands = new Collection();
+
+client.colors = require("@root/config").Colors;
 client.translate = languages;
 
-(async () => {
-    try {
-        mongoose.set("strictQuery", false);
-        await mongoose.connect(process.env.MONGODB_URI, { keepAlive: true });
-        console.log("🧶 Connected to DB.");
+const slash = require("@utils/getLocalCommands")();
+console.log(slash.map((cmd) => cmd.name));
 
-        eventHandler(client);
-    } catch (error) {
-        console.log(`Error: ${error}`);
-    }
-})();
-
+Database.connect(process.env.MONGODB_URI);
 client.login(process.env.TOKEN);
