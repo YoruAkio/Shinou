@@ -1,5 +1,6 @@
+const { Collection } = require("discord.js");
 const { Bot } = require("@root/conf");
-const getLocalCommands = require("@root/utils/getLocalCommands");
+const cooldown = new Collection();
 
 module.exports = {
     name: "interactionCreate",
@@ -11,19 +12,15 @@ module.exports = {
     kioEventRun: async (client, interaction) => {
         if (!interaction.isChatInputCommand()) return;
 
-        const localCommands = getLocalCommands();
+        const slashCommands = client.slashCommands.get(interaction.commandName);
+        if (!slashCommands)
+            return client.slashcommands.delete(interaction.commandName);
 
         try {
-            const commandObject = localCommands.find(
-                (cmd) => cmd.name === interaction.commandName
-            );
-
-            if (!commandObject) return;
-
             /**
              * @param {devOnly} Boolean
              */
-            if (commandObject.devOnly) {
+            if (slashCommands.devOnly) {
                 if (!Bot.devs.includes(interaction.member.id)) {
                     interaction.reply({
                         content:
@@ -37,7 +34,7 @@ module.exports = {
             /**
              * @param {testOnly} Boolean
              */
-            if (commandObject.testOnly) {
+            if (slashCommands.testOnly) {
                 if (!(interaction.guild.id === Bot.test_server)) {
                     interaction.reply({
                         content: "This command cannot be ran here.",
@@ -50,19 +47,14 @@ module.exports = {
             /**
              * @type {Array<PermissionResolvable>}
              */
-            if (commandObject.userPermission?.length) {
-                for (const permission of commandObject.permissionsRequired) {
+            if (slashCommands.userPermission?.length) {
+                for (const permission of slashCommands.permissionsRequired) {
                     if (!interaction.member.permissions.has(permission)) {
                         interaction.reply({
                             content: "Not enough permissions.",
                             ephemeral: true,
                         });
                         return;
-                    } else {
-                        interaction.reply({
-                            content: "All permissions are ok.",
-                            ephemeral: true,
-                        });
                     }
                 }
             }
@@ -70,8 +62,8 @@ module.exports = {
             /**
              * @type {Array<PermissionResolvable>}
              */
-            if (commandObject.botPermissions?.length) {
-                for (const permission of commandObject.botPermissions) {
+            if (slashCommands.botPermissions?.length) {
+                for (const permission of slashCommands.botPermissions) {
                     const bot = interaction.guild.members.me;
 
                     if (!bot.permissions.has(permission)) {
@@ -87,7 +79,7 @@ module.exports = {
             /**
              * @param {isNsfw} Boolean
              */
-            if (commandObject.isNsfw) {
+            if (slashCommands.isNsfw) {
                 if (!interaction.channel.nsfw) {
                     interaction.reply({
                         content:
@@ -98,7 +90,7 @@ module.exports = {
                 }
             }
 
-            await commandObject.kioSlashRun(client, interaction);
+            await slashCommands.kioRun(client, interaction);
         } catch (error) {
             console.log(`There was an error running this command: ${error}`);
         }

@@ -126,6 +126,23 @@ module.exports = {
             }
         }
 
+        if (command.botPermissions?.length) {
+            for (const permission of command.botPermissions) {
+                if (!message.guild.me.permissions.has(permission)) {
+                    return message.reply({
+                        embeds: [
+                            new EmbedBuilder()
+                                .setTitle("Missing Permissions")
+                                .setDescription(
+                                    `I don't have permission(s) \`${permission}\` to run this command`
+                                )
+                                .setColor(client.colors.PINK),
+                        ],
+                    });
+                }
+            }
+        }
+        
         await command.kioRun(client, message, args);
     },
 };

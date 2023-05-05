@@ -49,13 +49,11 @@ require("./handlers/index.js")(client);
 require("@root/utils/consoleRunning.js");
 
 client.commands = new Collection();
+client.aliases = new Collection();
 client.slashCommands = new Collection();
 
 client.colors = require("@root/conf").Colors;
 client.translate = languages;
-
-const slash = require("@utils/getLocalCommands")();
-console.log(slash.map((cmd) => cmd.name));
 
 Database.connect(process.env.MONGODB_URI);
 client.login(process.env.TOKEN);
