@@ -2,7 +2,7 @@ module.exports = {
     Bot: {
         test_server: "YOUR_TEST_SERVER_ID",
         client_id: "YOUR_BOT_ID",
-        devs: ["YOUR_DISCORD_ID", "YOUR_DISCORD_SECOND_ID"],
+        devs: ["YOUR_CLIENT_ID"],
     },
     Colors: {
         BOT_EMBED: "#068ADD",
@@ -15,7 +15,4 @@ module.exports = {
     WEBHOOKS: {
         ERROR_LOGS: "",
     },
-    Akio: {
-        Awwnime: "Aww"
-    }
 };
