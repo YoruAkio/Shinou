@@ -1,4 +1,3 @@
-require("module-alias/register");
 const { version } = require("@root/package.json");
 const client = require("@root/index");
 

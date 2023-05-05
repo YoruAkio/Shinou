@@ -1,7 +1,7 @@
 const { glob } = require("glob");
 const { promisify } = require("util");
 const fs = require("fs");
-const Logger = require("@root/Utils/Logger");
+const Logger = require("@root/utils/Logger");
 const globPromise = promisify(glob);
 
 /**
@@ -9,7 +9,7 @@ const globPromise = promisify(glob);
  */
 module.exports = async (client) => {
     // Commands
-    const commandFiles = await globPromise(`${process.cwd()}/Commands/**/*.js`);
+    const commandFiles = await globPromise(`${process.cwd()}/commands/**/*.js`);
     commandFiles.map((value) => {
         const file = require(value);
         const splitted = value.split("/");
@@ -21,7 +21,7 @@ module.exports = async (client) => {
         }
     });
 
-    const eventFiles = await globPromise(`${process.cwd()}/Events/**/*.js`);
+    const eventFiles = await globPromise(`${process.cwd()}/events/**/*.js`);
     eventFiles.map((value) => {
         const file = require(value);
 

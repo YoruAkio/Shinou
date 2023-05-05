@@ -1,5 +1,5 @@
 const { EmbedBuilder } = require("discord.js");
-const { getNeko, getWaifu } = require("@root/Utils/apiUtils");
+const { getNeko, getWaifu } = require("@root/utils/apiUtils");
 
 module.exports = {
     name: "randwaifu",

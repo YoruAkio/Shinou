@@ -6,7 +6,7 @@ const {
 } = require("discord.js");
 const os = require("os");
 const { stripIndent } = require("common-tags");
-const ClientUtils = require("@root/Utils/clientUtils");
+const ClientUtils = require("@root/utils/clientUtils");
 
 module.exports = {
     name: "botinfo",

@@ -1,6 +1,5 @@
 require("dotenv").config();
 require("module-alias/register");
-require("@root/Utils/consoleRunning.js");
 
 const {
     Client,
@@ -9,8 +8,8 @@ const {
     Collection,
     Partials,
 } = require("discord.js");
-const languages = require("./Languages/en.json");
-const Database = require("./Utils/databaseUtils");
+const languages = require("./languages/en.json");
+const Database = require("./utils/databaseUtils");
 
 const client = new Client({
     // Status of the bot
@@ -46,12 +45,13 @@ const client = new Client({
 });
 
 module.exports = client;
-require("./Handlers/index.js")(client);
+require("./handlers/index.js")(client);
+require("@root/utils/consoleRunning.js");
 
 client.commands = new Collection();
 client.slashCommands = new Collection();
 
-client.colors = require("@root/config").Colors;
+client.colors = require("@root/conf").Colors;
 client.translate = languages;
 
 const slash = require("@utils/getLocalCommands")();

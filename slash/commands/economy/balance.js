@@ -1,11 +1,9 @@
-require("module-alias/register");
-
 const {
     Client,
     Interaction,
     ApplicationCommandOptionType,
 } = require("discord.js");
-const User = require("@root/Models/User");
+const User = require("@root/models/User");
 
 module.exports = {
     name: "balance",

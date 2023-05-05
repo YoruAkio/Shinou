@@ -1,6 +1,5 @@
-require("module-alias/register");
-const { Bot } = require("@root/config");
-const getLocalCommands = require("@root/Utils/getLocalCommands");
+const { Bot } = require("@root/conf");
+const getLocalCommands = require("@root/utils/getLocalCommands");
 
 module.exports = {
     name: "interactionCreate",

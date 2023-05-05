@@ -1,4 +1,3 @@
-require("module-alias/register");
 const { EmbedBuilder } = require("discord.js");
 const { get } = require("systeminformation");
 const { dependencies } = require("@root/package.json");

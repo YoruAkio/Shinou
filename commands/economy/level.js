@@ -5,9 +5,9 @@ const {
     AttachmentBuilder,
 } = require("discord.js");
 const canvacord = require("canvacord");
-const calculateLevelXp = require("@root/Utils/calculateLevelXp");
-const Level = require("@root/Models/Level");
-const ClientUtils = require("@root/Utils/clientUtils");
+const calculateLevelXp = require("@root/utils/calculateLevelXp");
+const Level = require("@root/models/Level");
+const ClientUtils = require("@root/utils/clientUtils");
 
 module.exports = {
     name: "level",

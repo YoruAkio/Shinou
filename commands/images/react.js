@@ -1,5 +1,5 @@
 const { EmbedBuilder, ApplicationCommandOptionType } = require("discord.js");
-const { getJson } = require("@root/Utils/httpUtils");
+const { getJson } = require("@root/utils/httpUtils");
 const NekosLife = require("nekos.life");
 const neko = new NekosLife();
 

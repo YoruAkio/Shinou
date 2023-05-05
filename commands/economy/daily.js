@@ -1,7 +1,6 @@
-require("module-alias/register");
 const { Client, Interaction, EmbedBuilder } = require("discord.js");
-const User = require("@root/Models/User");
-const { Bot } = require("@root/config");
+const User = require("@root/models/User");
+const { Bot } = require("@root/conf");
 
 const dailyAmount = Math.floor(Math.random() * 25000) + 1;
 

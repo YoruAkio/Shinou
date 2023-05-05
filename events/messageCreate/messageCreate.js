@@ -1,6 +1,5 @@
 const prefixModel = require("@models/Guild");
 const { Permissions, EmbedBuilder } = require("discord.js");
-const { devs, testServer } = require("@root/config.json");
 const { commands } = require("@root/index");
 
 module.exports = {
@@ -68,7 +67,7 @@ module.exports = {
         if (!command) return;
 
         if (command.devOnly || command.onlyDev || command.isDev) {
-            if (!devs.includes(message.author.id)) {
+            if (!client.config.Bot.devs.includes(message.author.id)) {
                 return message.reply({
                     embeds: [
                         new EmbedBuilder()
@@ -83,7 +82,7 @@ module.exports = {
         }
 
         if (commands.testOnly) {
-            if (!(message.guild.id === testServer)) {
+            if (!(message.guild.id === client.config.Bot.testServer)) {
                 return message.reply({
                     embeds: [
                         new EmbedBuilder()

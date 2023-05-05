@@ -4,7 +4,7 @@ config.*
 yarn.lock
 package-lock.json
 test.js
-config.js
+conf.js
 
 # Logs
 logs

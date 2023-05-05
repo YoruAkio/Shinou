@@ -1,12 +1,11 @@
-require("module-alias/register");
-const config = require("@root/config");
-const areCommandsDifferent = require("@root/Utils/areCommandsDifferent");
-const getApplicationCommands = require("@root/Utils/getApplicationCommands");
-const getLocalCommands = require("@root/Utils/getLocalCommands");
+const config = require("@root/conf");
+const areCommandsDifferent = require("@root/utils/areCommandsDifferent");
+const getApplicationCommands = require("@root/utils/getApplicationCommands");
+const getLocalCommands = require("@root/utils/getLocalCommands");
 
 module.exports = async (client) => {
     try {
-        console.log("h3yyyyyyyyyyyyyyyyyyyyyyyyyyyyyy")
+        console.log("h3yyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
 
         const localCommands = getLocalCommands();
         const applicationCommands = await getApplicationCommands(

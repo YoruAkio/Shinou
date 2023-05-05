@@ -5,11 +5,11 @@
         "baseUrl": "./",
         "paths": {
             "@root/*": ["./*"],
-            "@events/*": ["Events/*"],
-            "@utils/*": ["Utils/*"],
-            "@models/*": ["Models/*"],
-            "@handlers/*": ["Handlers/*"],
-            "@structures/*": ["Structures/*"]
+            "@events/*": ["events/*"],
+            "@utils/*": ["utils/*"],
+            "@models/*": ["models/*"],
+            "@handlers/*": ["handlers/*"],
+            "@structures/*": ["structures/*"]
         }
     },
     "exclude": ["node_modules", "**/node_modules/*"]

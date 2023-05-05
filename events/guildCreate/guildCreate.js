@@ -1,4 +1,4 @@
-const { Logger } = require("@root/Utils");
+const { Logger } = require("@root/utils");
 const {
     EmbedBuilder,
     AttachmentBuilder,

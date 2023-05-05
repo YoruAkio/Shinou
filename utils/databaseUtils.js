@@ -1,4 +1,4 @@
-const { Guild, User, Level } = require("@models/");
+// const { Guild, User, Level } = require("models");
 const mongoose = require("mongoose");
 
 module.exports = class Database {

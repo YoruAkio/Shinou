@@ -1,5 +1,5 @@
 const { EmbedBuilder } = require("discord.js");
-const GuildModel = require("@root/Models/Guild");
+const GuildModel = require("@root/models/Guild");
 
 /**
  * @type {import("@structures/Command").CommandObject}

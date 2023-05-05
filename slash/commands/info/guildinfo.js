@@ -1,5 +1,5 @@
 const { EmbedBuilder } = require("discord.js");
-const Guild = require("@root/Models/Guild");
+const Guild = require("@root/models/Guild");
 
 module.exports = {
     name: "guildinfo",
