@@ -96,3 +96,5 @@ module.exports = {
         }
     },
 };
+
+// remove application commands if the command file is deleted
