@@ -3,7 +3,6 @@ const { Client, Message, EmbedBuilder } = require("discord.js");
 module.exports = {
     name: "ping",
     description: "Returns the web socket latency of the bot.",
-    cooldown: 5,
     /**
      * @param {import("discord.js").Client} client
      * @param {import("discord.js").Message} message
