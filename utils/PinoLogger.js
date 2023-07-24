@@ -2,8 +2,8 @@ const config = require("@root/conf.js");
 const { EmbedBuilder, WebhookClient } = require("discord.js");
 const pino = require("pino");
 
-const webhookLogger = config.WEBHOOKS.ERROR_LOGS
-    ? new WebhookClient({ url: config.WEBHOOKS.ERROR_LOGS })
+const webhookLogger = config.Webhooks.ERROR_LOGS
+    ? new WebhookClient({ url: config.Webhooks.ERROR_LOGS })
     : undefined;
 
 const today = new Date();
