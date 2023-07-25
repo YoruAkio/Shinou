@@ -53,6 +53,7 @@ client.aliases = new Collection();
 client.slashCommands = new Collection();
 
 client.colors = require("@root/conf").Colors;
+client.config = require("@root/conf").Bot;
 client.translate = languages;
 
 Database.connect(process.env.MONGODB_URI);
