@@ -99,7 +99,7 @@ module.exports = async (client) => {
                     name: command.name,
                     description: command.description,
                     type: command.type || 1,
-                    options: command.options ? command.options : null,
+                    options: command.options ? command.options : [],
                     default_permissions: command.botPermissions
                         ? PermissionsBitField.resolve(
                               command.botPermissions
@@ -117,7 +117,7 @@ module.exports = async (client) => {
         });
     });
 
-    if (!process.env.CLIENT_ID) {
+    if (!client.config.client_id) {
         Logger.error(
             "Handler",
             "No client id provided, slash commands will not be registered"
@@ -137,7 +137,7 @@ module.exports = async (client) => {
         Logger.info("Handler", "Started refreshing application (/) commands.");
 
         try {
-            await rest.put(Routes.applicationCommands(process.env.CLIENT_ID), {
+            await rest.put(Routes.applicationCommands(client.config.client_id), {
                 body: slashCommands,
             });
             Logger.info(
