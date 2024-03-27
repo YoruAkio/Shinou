@@ -21,16 +21,4 @@ module.exports = {
 
         await message.reply({ embeds: [embed] });
     },
-    kioSlashRun: async (client, interaction) => {
-        await interaction.deferReply();
-
-        const imageUrl = await neko.get("hentai");
-
-        const embed = new EmbedBuilder()
-            .setColor(client.colors.PINK)
-            .setImage(imageUrl)
-            .setFooter({ text: `Requested By ${interaction.user.tag}` });
-
-        await interaction.followUp({ embeds: [embed] });
-    },
 };

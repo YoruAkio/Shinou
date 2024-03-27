@@ -1,51 +1,62 @@
-const { Client, Message, EmbedBuilder } = require("discord.js");
+const { Client, Message, EmbedBuilder } = require('discord.js');
 
 module.exports = {
-    name: "ping",
-    description: "Returns the web socket latency of the bot.",
+    name: 'ping',
+    description: 'Returns the web socket latency of the bot.',
     /**
-     * @param {import("discord.js").Client} client
-     * @param {import("discord.js").Message} message
-     * @param {String[]} args
+     * A function to run and handle ping commands.
+     *
+     * @param {Client} client - The Discord.js client
+     * @param {Message} message - The message triggering the command
+     * @param {Array} args - The arguments provided with the command
+     * @return {Promise<void>}
      */
     kioRun: async (client, message, args) => {
-        message.reply({
-            embeds: [
-                new EmbedBuilder()
-                    .setTitle(`Grace said : "Pong!!!!!!"`)
-                    .setDescription(`${client.ws.ping} ws`)
-                    .setFooter({
-                        text: `Requested by ${message.author.tag}`,
-                        iconURL: message.author.displayAvatarURL({
-                            dynamic: true,
-                        }),
-                    })
-                    .setColor(client.colors.PINK),
-            ],
-        });
-    },
+        const apiPing = client.ws.ping;
+        const emojiPing = {
+            bad: '<:kio_badping:1192686058048077884>',
+            idle: '<:kio_idleping:1192686248242978928> ',
+            doog: '<:kio_goodping:1192715613735497738>',
+        };
 
-    /**
-     *
-     * @param {import("discord.js").Client} client
-     * @param {import("discord.js").Interaction} interaction
-     */
-    kioSlashRun: async (client, interaction) => {
-        await interaction.deferReply();
+        const apiPingEmoji =
+            apiPing <= 100
+                ? emojiPing.doog
+                : apiPing <= 200
+                ? emojiPing.idle
+                : emojiPing.bad;
 
-        interaction.followUp({
-            embeds: [
-                new EmbedBuilder()
-                    .setTitle(`Grace said : "Pong!!!!!!"`)
-                    .setDescription(`${client.ws.ping} ws`)
-                    .setFooter({
-                        text: `Requested by ${interaction.user.tag}`,
-                        iconURL: interaction.user.displayAvatarURL({
-                            dynamic: true,
-                        }),
-                    })
-                    .setColor(client.colors.PINK),
-            ],
+        message.reply({ content: client.translate.commands.waiting }).then(msg => {
+            const clientPing = msg.createdTimestamp - message.createdTimestamp;
+            const clientPingEmoji =
+                clientPing <= 100
+                    ? emojiPing.doog
+                    : clientPing <= 200
+                    ? emojiPing.idle
+                    : emojiPing.bad;
+
+            msg.edit({
+                embeds: [
+                    new EmbedBuilder()
+                        .setDescription(
+                            client.translate.commands.ping.reply
+                                .replace('{client}', client.user.username)
+                                .replace('{apiPingEmoji}', apiPingEmoji)
+                                .replace('{apiPing}', apiPing)
+                                .replace('{clientPingEmoji}', clientPingEmoji)
+                                .replace('{clientPing}', clientPing),
+                        )
+                        .setColor(client.colors.PINK)
+                        .setFooter({
+                            text: client.translate.commands.embed.footer,
+                            iconURL: message.author.displayAvatarURL({
+                                dynamic: true,
+                            }),
+                        })
+                        .setTimestamp(),
+                ],
+                content: null,
+            });
         });
     },
 };

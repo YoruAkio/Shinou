@@ -1,5 +1,4 @@
-require("dotenv").config();
-require("module-alias/register");
+require('dotenv').config();
 
 const {
     Client,
@@ -7,18 +6,17 @@ const {
     ActivityType,
     Collection,
     Partials,
-} = require("discord.js");
-const languages = require("./languages/en.json");
-const Database = require("./utils/databaseUtils");
+} = require('discord.js');
+const Database = require('./utils/databaseUtils');
 
 const client = new Client({
     // Status of the bot
     presence: {
-        status: "idle",
+        status: 'idle',
         afk: true,
         activities: [
             {
-                name: "Doing something with discord stuff",
+                name: 'Doing something with discord stuff',
                 type: ActivityType.Competing,
             },
         ],
@@ -31,9 +29,8 @@ const client = new Client({
         IntentsBitField.Flags.GuildMembers,
         IntentsBitField.Flags.GuildMessages,
         IntentsBitField.Flags.MessageContent,
+        IntentsBitField.Flags.GuildMessageReactions,
         IntentsBitField.Flags.DirectMessages,
-        IntentsBitField.Flags.DirectMessageTyping,
-        IntentsBitField.Flags.DirectMessageReactions,
     ],
     partials: [
         Partials.User,
@@ -44,17 +41,19 @@ const client = new Client({
     restRequestTimeout: 30000,
 });
 
-module.exports = client;
-require("./handlers/index.js")(client);
-require("@root/utils/consoleRunning.js");
-
 client.commands = new Collection();
 client.aliases = new Collection();
 client.slashCommands = new Collection();
 
-client.colors = require("@root/conf").Colors;
-client.config = require("@root/conf").Bot;
-client.translate = languages;
+client.colors = require('./conf.js').Colors;
+client.config = require('./conf.js').Bot;
+client.translate = require('./languages/en.json')
+client.utils = require('./utils/botUtils.js')
+
+require('./utils/consoleRunning.js');
+require('./handlers/index.js')(client);
+
+module.exports = client;
 
 Database.connect(process.env.MONGODB_URI);
 client.login(process.env.TOKEN);

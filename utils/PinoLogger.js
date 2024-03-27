@@ -1,4 +1,4 @@
-const config = require("@root/conf.js");
+const config = require("../conf.js");
 const { EmbedBuilder, WebhookClient } = require("discord.js");
 const pino = require("pino");
 

@@ -4,19 +4,12 @@ const {
     ApplicationCommandOptionType,
     Message,
 } = require("discord.js");
-const User = require("@root/models/User");
+const User = require("../../../models/User");
 
 module.exports = {
     name: "balance",
     aliases: ["bal", "money"],
     description: "See yours/someone else's balance",
-    options: [
-        {
-            name: "user",
-            description: "The user whose balance you want to get.",
-            type: ApplicationCommandOptionType.User,
-        },
-    ],
 
     /**
      *

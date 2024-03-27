@@ -1,5 +1,5 @@
-const { version } = require("@root/package.json");
-const client = require("@root/index");
+const { version } = require("../package.json");
+const client = require("../index");
 
 module.exports = class ClientUtils {
     /**

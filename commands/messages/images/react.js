@@ -1,5 +1,5 @@
 const { EmbedBuilder, ApplicationCommandOptionType } = require("discord.js");
-const { getJson } = require("@root/utils/httpUtils");
+const { getJson } = require("../../../utils/httpUtils");
 const NekosLife = require("nekos.life");
 const neko = new NekosLife();
 
@@ -20,18 +20,6 @@ const choices = [
 module.exports = {
     name: "react",
     description: "Get anime reaction images",
-    options: [
-        {
-            name: "category",
-            description: "The category of reaction image",
-            type: ApplicationCommandOptionType.String,
-            required: true,
-            choices: choices.map((ch) => ({
-                name: ch,
-                value: ch,
-            })),
-        },
-    ],
     kioRun: async (client, message, args) => {
         if (!args[0]) {
             message.channel.send(
@@ -93,44 +81,5 @@ module.exports = {
 
         const embed = await genReaction(args[0], message.author);
         message.channel.send({ embeds: [embed] });
-    },
-    kioSlashRun: async (client, interaction) => {
-        await interaction.deferReply();
-
-        const genReaction = async (category, user) => {
-            try {
-                let imageUrl;
-
-                // some-random api
-                if (category === "wink") {
-                    const response = await getJson(
-                        "https://some-random-api.ml/animu/wink"
-                    );
-                    if (!response.success) throw new Error("API error");
-                }
-
-                // neko api
-                else {
-                    imageUrl = (await neko[category]()).url;
-                    console.log(imageUrl);
-                }
-
-                return new EmbedBuilder()
-                    .setAuthor({ name: `${category}!` })
-                    .setColor(client.colors.PINK)
-                    .setImage(imageUrl)
-                    .setFooter({ text: `Requested By ${user.tag}` });
-            } catch (ex) {
-                return new EmbedBuilder()
-                    .setAuthor({ name: "Error!" })
-                    .setColor(client.colors.PINK)
-                    .setDescription("Failed to fetch meme. Try again!")
-                    .setFooter({ text: `Requested By ${user.tag}` });
-            }
-        };
-
-        const choice = interaction.options.getString("category");
-        const embed = await genReaction(choice, interaction.user);
-        await interaction.followUp({ embeds: [embed] });
     },
 };

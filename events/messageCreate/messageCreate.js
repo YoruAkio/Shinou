@@ -1,9 +1,8 @@
-const prefixModel = require("@models/Guild");
-const { Permissions, EmbedBuilder } = require("discord.js");
-const { commands } = require("@root/index");
+const prefixModel = require('../../models/Guild');
+const { Permissions, EmbedBuilder } = require('discord.js');
 
 module.exports = {
-    name: "messageCreate",
+    name: 'messageCreate',
 
     /**
      * @type {import("discord.js").Client} client
@@ -14,17 +13,28 @@ module.exports = {
             let custom;
 
             const data = await prefixModel
-                .findOne({ Guild: message.guild.id })
-                .catch((err) => console.log(err));
+                .findOne({ guildId: message.guild.id })
+                .catch(err => console.log(err));
 
             if (data) {
                 custom = data.prefix;
             } else {
-                custom = "-";
+                custom = '-';
             }
 
             return custom;
         };
+
+        const guildLanguage = await prefixModel.findOne({
+            guildId: message.guild.id,
+        });
+
+        if (guildLanguage) {
+            client.translate = require(`../../languages/${guildLanguage.language}.json`);
+            console.log(guildLanguage.language);
+        } else {
+            client.translate = require('../../languages/en.json');
+        }
 
         const prefixData = await client.prefix(message);
 
@@ -32,9 +42,9 @@ module.exports = {
             return message.reply({
                 embeds: [
                     new EmbedBuilder()
-                        .setTitle("Prefix")
+                        .setTitle('Prefix')
                         .setDescription(
-                            `My prefix for this server is \`${prefixData}\``
+                            `My prefix for this server is \`${prefixData}\``,
                         )
                         .setColor(client.colors.PINK)
                         .setFooter({
@@ -62,32 +72,19 @@ module.exports = {
 
         const command =
             client.commands.get(cmd.toLowerCase()) ||
-            client.commands.find((c) => c.aliases?.includes(cmd.toLowerCase()));
+            client.commands.find(c => c.aliases?.includes(cmd.toLowerCase()));
 
         if (!command) return;
 
         if (command.devOnly || command.onlyDev || command.isDev) {
-            if (!client.config.Bot.devs.includes(message.author.id)) {
+            if (!client.config.devs.includes(message.author.id)) {
                 return message.reply({
                     embeds: [
                         new EmbedBuilder()
-                            .setTitle("Developer Only")
+                            .setTitle('Developer Only')
                             .setDescription(
-                                "Only developers are allowed to run this command."
+                                'Only developers are allowed to run this command.',
                             )
-                            .setColor(client.colors.PINK),
-                    ],
-                });
-            }
-        }
-
-        if (commands.testOnly) {
-            if (!(message.guild.id === client.config.Bot.testServer)) {
-                return message.reply({
-                    embeds: [
-                        new EmbedBuilder()
-                            .setTitle("Test Server Only")
-                            .setDescription("This command cannot be ran here.")
                             .setColor(client.colors.PINK),
                     ],
                 });
@@ -99,9 +96,9 @@ module.exports = {
                 return message.reply({
                     embeds: [
                         new EmbedBuilder()
-                            .setTitle("NSFW Channel Only")
+                            .setTitle('NSFW Channel Only')
                             .setDescription(
-                                "This command can only be ran in an NSFW channel."
+                                'This command can only be ran in an NSFW channel.',
                             )
                             .setColor(client.colors.PINK),
                     ],
@@ -110,39 +107,35 @@ module.exports = {
         }
 
         if (command.userPermissions?.length) {
-            for (const permission of command.userPermissions) {
-                if (!message.member.permissions.has(permission)) {
-                    return message.reply({
-                        embeds: [
-                            new EmbedBuilder()
-                                .setTitle("Missing Permissions")
-                                .setDescription(
-                                    `You do't have permission(s) \`${permission}\` to run this command`
-                                )
-                                .setColor(client.colors.PINK),
-                        ],
-                    });
-                }
+            if (!message.member.permissions.has(command.userPermissions)) {
+                return message.reply({
+                    embeds: [
+                        new EmbedBuilder()
+                            .setTitle('Error')
+                            .setDescription(
+                                'You do not have enough permissions to run this command.',
+                            )
+                            .setColor(client.colors.PINK),
+                    ],
+                });
             }
         }
 
-        if (command.botPermissions?.length) {
-            for (const permission of command.botPermissions) {
-                if (!message.guild.me.permissions.has(permission)) {
-                    return message.reply({
-                        embeds: [
-                            new EmbedBuilder()
-                                .setTitle("Missing Permissions")
-                                .setDescription(
-                                    `I don't have permission(s) \`${permission}\` to run this command`
-                                )
-                                .setColor(client.colors.PINK),
-                        ],
-                    });
-                }
+        if (command.clientPermissions?.length) {
+            if (!message.guild.me.permissions.has(command.clientPermissions)) {
+                return message.reply({
+                    embeds: [
+                        new EmbedBuilder()
+                            .setTitle('Error')
+                            .setDescription(
+                                'I do not have enough permissions to run this command.',
+                            )
+                            .setColor(client.colors.PINK),
+                    ],
+                });
             }
         }
-        
+
         await command.kioRun(client, message, args);
     },
 };

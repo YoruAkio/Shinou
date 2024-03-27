@@ -1,8 +1,8 @@
-const { ansiColor } = require("@root/utils/consoleUtils");
-const ClientUtils = require("@root/utils/clientUtils");
+const { ansiColor } = require("./consoleUtils");
+const ClientUtils = require("./clientUtils");
 const figlet = require("figlet");
 const gradient = require("gradient-string");
-const Logger = require("@root/utils/Logger");
+const Logger = require("./Logger");
 
 const clearStyle = ansiColor(0, "sgr");
 const underlineStyle = ansiColor(4, "sgr");

@@ -1,0 +1,23 @@
+{
+    "commands": {
+        "waiting": "⚙️ コマンドの処理中...",
+        "embed": {
+            "footer": "Vertion開発チームによる「#ShiroOnTop"
+        },
+        "ping": {
+            "description": "クライアントのレイテンシーを取得する",
+            "reply": "🏓・Pong! クライアント}のレイテンシ取得に成功\n<:kio_downright:1192685943371595867>・クライアントは {clientPingEmoji}**`{clientPing}`**, APIは {apiPingEmoji}**`{apiPing}`**."
+        },
+        "setprefix": {
+            "description": "ボットのプレフィックスを変更する",
+            "reply": "<@{authorid}>, プレフィックスが正常に変更されました： `{prefix}`"
+        },
+        "setlang": {
+            "description": "サーバー上でボットの言語を設定する",
+            "noargs": "セットする言語の論拠を示してほしい！",
+            "invalid": "有効な言語をご記入ください！",
+            "lang": "使用可能な言語: `en`, `jp`",
+            "reply": "言語の変更に成功し、言語が `{lang}` に設定されました！"
+        }
+    }
+}

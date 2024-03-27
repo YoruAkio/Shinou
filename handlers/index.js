@@ -1,151 +1,85 @@
-const { glob } = require("glob");
-const { promisify } = require("util");
-const fs = require("fs");
-const Logger = require("@root/utils/Logger");
-const globPromise = promisify(glob);
-const { REST, Routes, PermissionsBitField } = require("discord.js");
-const { Bot } = require("@root/conf");
+const fs = require('fs');
+const path = require('path');
+const Logger = require('../utils/Logger');
+const { REST, Routes, PermissionsBitField } = require('discord.js');
 
 /**
- * @param {Client} client
+ * @param {import('discord.js').Client} client
  */
-module.exports = async (client) => {
-    const eventFiles = await globPromise(`${process.cwd()}/events/**/*.js`);
-    eventFiles.map((value) => {
-        const file = require(value);
+module.exports = async client => {
+    const eventsDir = path.join(__dirname, '../events/');
+    const commandsDir = path.join(__dirname, '../commands/messages/');
+    const startLoadTime = Date.now();
 
-        if (file.name) {
-            if (file.once) {
-                client.once(file.name, (...args) =>
-                    file.kioEventRun(client, ...args)
-                );
-                delete require.cache[require.resolve(value)];
-                Logger.info(
-                    "Event",
-                    `${file.name} has been loaded as a once event`
-                );
-                return;
-            } else {
-                client.on(file.name, (...args) =>
-                    file.kioEventRun(client, ...args)
-                );
-
-                delete require.cache[require.resolve(value)];
-                Logger.info(
-                    "Event",
-                    `${file.name} has been loaded as an event`
-                );
-                return;
-            }
-        } else {
-            Logger.error("Event", `${value} is not a valid event`);
-        }
-    });
-
-    fs.readdirSync("./commands/messages/").forEach((dir) => {
-        const files = fs
-            .readdirSync(`./commands/messages/${dir}/`)
-            .filter((file) => file.endsWith(".js"));
-
-        if (!files || files.length <= 0)
-            return Logger.error("Handler", `No commands provided right now`);
-        files.forEach((file) => {
-            let command = require(`../commands/messages/${dir}/${file}`);
-
-            if (!command.name) {
-                Logger.error("Handler", `No name provided for command ${file}`);
-            }
-
-            if (command) {
-                client.commands.set(command.name, command);
-                if (command.aliases && Array.isArray(command.aliases)) {
-                    command.aliases.forEach((alias) => {
-                        client.aliases.set(alias, command.name);
-                    });
-                }
-                Logger.info(
-                    "Handler",
-                    `Loaded command ${command.name} with aliases ${
-                        command.aliases ? command.aliases : "Not set"
-                    }`
-                );
-            } else {
-                Logger.error("Handler", `Error loading command ${file}`);
-            }
-        });
-    });
-
-    const slashCommands = [];
-
-    fs.readdirSync("./commands/slash").forEach((dir) => {
-        const files = fs
-            .readdirSync(`./commands/slash/${dir}/`)
-            .filter((file) => file.endsWith(".js"));
-
-        if (!files || files.length <= 0)
-            return Logger.error("Handler", `No commands provided right now`);
-        files.forEach((file) => {
-            let command = require(`../commands/slash/${dir}/${file}`);
-
-            if (!command.name) {
-                Logger.error("Handler", `No name provided for command ${file}`);
-            }
-
-            if (command) {
-                client.slashCommands.set(command.name, command);
-                Logger.info("Handler", `Loaded slash command ${command.name}`);
-
-                slashCommands.push({
-                    name: command.name,
-                    description: command.description,
-                    type: command.type || 1,
-                    options: command.options ? command.options : [],
-                    default_permissions: command.botPermissions
-                        ? PermissionsBitField.resolve(
-                              command.botPermissions
-                          ).toString()
-                        : null,
-                    defailt_member_permissions: command.userPermissions
-                        ? PermissionsBitField.resolve(
-                              command.userPermissions
-                          ).toString()
-                        : null,
-                });
-            } else {
-                Logger.error("Handler", `Error loading slash command ${file}`);
-            }
-        });
-    });
-
-    if (!client.config.client_id) {
-        Logger.error(
-            "Handler",
-            "No client id provided, slash commands will not be registered"
-        );
+    if (!fs.existsSync(eventsDir)) {
+        Logger.error('Handler', `Events directory does not exist`);
         return process.exit();
-    } else if (!process.env.TOKEN) {
-        Logger.error(
-            "Handler",
-            "No token provided, slash commands will not be registered"
-        );
+    } else if (!fs.existsSync(commandsDir)) {
+        Logger.error('Handler', `Commands directory does not exist`);
         return process.exit();
     }
-    
-    const rest = new REST({ version: "10" }).setToken(process.env.TOKEN);
 
-    (async () => {
-        Logger.info("Handler", "Started refreshing application (/) commands.");
+    let handlerLoaded = 0;
+    let commandsLoaded = 0;
 
-        try {
-            await rest.put(Routes.applicationCommands(client.config.client_id), {
-                body: slashCommands,
-            });
-            Logger.info(
-                "Handler",
-                "Successfully reloaded application (/) commands."
-            );
-        } catch (error) {
-            Logger.error("Handler", error);
+    for (const dir of fs.readdirSync(eventsDir)) {
+        const dirPath = path.join(eventsDir, dir);
+        for (const file of fs.readdirSync(dirPath)) {
+            const filePath = path.join(dirPath, file);
+            const files = require(filePath);
+
+            if (files.name) {
+                if (files.once) {
+                    client.once(files.name, (...args) =>
+                        files.kioEventRun(client, ...args),
+                    );
+                    // Logger.info('Handler', `Loaded event ${files.name}`);
+                    handlerLoaded++;
+                } else {
+                    client.on(files.name, (...args) =>
+                        files.kioEventRun(client, ...args),
+                    );
+                    // Logger.info('Handler', `Loaded event ${files.name}`);
+                    handlerLoaded++;
+                }
+            } else {
+                Logger.error('Handler', `No name provided for event ${file}`);
+            }
         }
-    })();
+    }
+
+    for (const dir of fs.readdirSync(commandsDir)) {
+        const dirPath = path.join(commandsDir, dir);
+        for (const file of fs.readdirSync(dirPath)) {
+            const filePath = path.join(dirPath, file);
+            const files = require(filePath);
+
+            if (!files | (files.length <= 0))
+                return console.log(`[ERROR] No commands found in ${dir}`);
+
+            if (files.name) {
+                client.commands.set(files.name, files);
+                if (files.aliases && Array.isArray(files.aliases)) {
+                    files.aliases.forEach(alias => {
+                        client.aliases.set(alias, files.name);
+                    });
+                }
+                // Logger.info(
+                //     'Handler',
+                //     `Loaded command ${files.name} ${
+                //         files.aliases && files.aliases.length > 0
+                //             ? `with aliases ${files.aliases.join(', ')}`
+                //             : ''
+                //     }`,
+                // );
+                commandsLoaded++;
+            } else {
+                Logger.error('Handler', `No name provided for command ${file}`);
+            }
+        }
+    }
+
+    const endLoadTime = Date.now();
+    const loadTime = endLoadTime - startLoadTime;
+    Logger.info('Handler', `All commands and events loaded in ${loadTime}ms, ${handlerLoaded} events and ${commandsLoaded} commands loaded`);
 };

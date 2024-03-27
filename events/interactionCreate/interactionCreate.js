@@ -1,5 +1,5 @@
 const { Collection } = require("discord.js");
-const { Bot } = require("@root/conf");
+const { Bot } = require('../../../conf');
 const cooldown = new Collection();
 
 module.exports = {
@@ -96,5 +96,3 @@ module.exports = {
         }
     },
 };
-
-// remove application commands if the command file is deleted
