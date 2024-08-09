@@ -1,9 +1,9 @@
-const { Collection } = require("discord.js");
-const { Bot } = require('../../../conf');
+const { Collection } = require('discord.js');
+const { Bot } = require('../../conf.js');
 const cooldown = new Collection();
 
 module.exports = {
-    name: "interactionCreate",
+    name: 'interactionCreate',
 
     /**
      * @param {import("discord.js").Client} client
@@ -24,7 +24,7 @@ module.exports = {
                 if (!Bot.devs.includes(interaction.member.id)) {
                     interaction.reply({
                         content:
-                            "Only developers are allowed to run this command.",
+                            'Only developers are allowed to run this command.',
                         ephemeral: true,
                     });
                     return;
@@ -37,7 +37,7 @@ module.exports = {
             if (slashCommands.testOnly) {
                 if (!(interaction.guild.id === Bot.test_server)) {
                     interaction.reply({
-                        content: "This command cannot be ran here.",
+                        content: 'This command cannot be ran here.',
                         ephemeral: true,
                     });
                     return;
@@ -51,7 +51,7 @@ module.exports = {
                 for (const permission of slashCommands.permissionsRequired) {
                     if (!interaction.member.permissions.has(permission)) {
                         interaction.reply({
-                            content: "Not enough permissions.",
+                            content: 'Not enough permissions.',
                             ephemeral: true,
                         });
                         return;
@@ -83,7 +83,7 @@ module.exports = {
                 if (!interaction.channel.nsfw) {
                     interaction.reply({
                         content:
-                            "This command can only be ran in NSFW channels.",
+                            'This command can only be ran in NSFW channels.',
                         ephemeral: true,
                     });
                     return;

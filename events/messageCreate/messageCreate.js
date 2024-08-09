@@ -1,4 +1,5 @@
 const prefixModel = require('../../models/Guild');
+const userModel = require('../../models/User');
 const { Permissions, EmbedBuilder } = require('discord.js');
 
 module.exports = {
@@ -28,6 +29,28 @@ module.exports = {
         const guildLanguage = await prefixModel.findOne({
             guildId: message.guild.id,
         });
+
+        const userData = await userModel.findOne({
+            userId: message.author.id,
+        });
+
+        if (!userData) {
+            const newUser = new userModel({
+                userId: message.author.id,
+                economy: {
+                    wallet: 0,
+                    bank: 0,
+                    lastDaily: null,
+                    lastWeekly: null,
+                    lastMonthly: null,
+                    lastWork: null,
+                },
+            });
+
+            await newUser.save();
+
+            console.log('New user saved to the database.');
+        }
 
         if (guildLanguage) {
             client.translate = require(`../../languages/${guildLanguage.language}.json`);
