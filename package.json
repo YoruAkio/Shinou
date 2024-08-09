@@ -1,5 +1,5 @@
 {
-    "name": "shinou",
+    "name": "shiro-chan",
     "version": "0.0.1",
     "description": "Assistant for your discord server will help your discord server a better place to live.",
     "main": "index.js",
@@ -12,10 +12,10 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/YoruAkio/Shinou.git"
+        "url": "git+https://github.com/YoruAkio/Shiro.git"
     },
     "bugs": {
-        "url": "https://github.com/YoruAkio/Shinou/issues"
+        "url": "https://github.com/YoruAkio/Shiro/issues"
     },
     "dependencies": {
         "@vitalets/google-translate-api": "^9.1.0",
