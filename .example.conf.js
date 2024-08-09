@@ -3,6 +3,7 @@ module.exports = {
         test_server: 'YOUR_TEST_SERVER_ID',
         client_id: 'YOUR_BOT_ID',
         devs: ['YOUR_DISCORD_ID', 'YOUR_DISCORD_SECOND_ID'],
+        server_support: 'YOUR_SUPPORT_SERVER_INVITE',
     },
     Colors: {
         BOT_EMBED: '#068ADD',
