@@ -10,7 +10,7 @@ const whiteColor = ansiColor(15, "foreground");
 const yellowColor = ansiColor(11, "foreground");
 const blueBrightColor = ansiColor(33, "foreground");
 
-const devName = figlet.textSync("Shinou", { font: "ANSI Shadow" });
+const devName = figlet.textSync("Shiro Chan", { font: "ANSI Shadow" });
 
 console.info(gradient.fruit(devName));
 console.info(
