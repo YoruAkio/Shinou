@@ -5,50 +5,45 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-    guildId: {
-        type: String,
-        required: true,
+    economy: {
+        wallet: {
+            type: Number,
+            default: 0,
+        },
+        bank: {
+            type: Number,
+            default: 0,
+        },
+        lastDaily: {
+            type: Date,
+            default: null,
+        },
+        lastWeekly: {
+            type: Date,
+            default: null,
+        },
+        lastMonthly: {
+            type: Date,
+            default: null,
+        },
+        lastWork: {
+            type: Date,
+            default: null,
+        },
     },
-    economy: [
-        {
-            wallet: {
-                type: Number,
-                default: 0,
-            },
-            bank: {
-                type: Number,
-                default: 0,
-            },
-            lastDaily: {
-                type: String,
-                default: null,
-            },
-            lastWeekly: {
-                type: String,
-                default: null,
-            },
-            lastMonthly: {
-                type: String,
-                default: null,
-            },
-            lastWork: {
-                type: String,
-                default: null,
-            },
-        },
-    ],
-    leveling: [
-        {
-            level: {
-                type: Number,
-                default: 1,
-            },
-            xp: {
-                type: Number,
-                default: 0,
-            },
-        },
-    ],
+    // TODO: Add leveling system
+    // leveling: [
+    //     {
+    //         level: {
+    //             type: Number,
+    //             default: 1,
+    //         },
+    //         xp: {
+    //             type: Number,
+    //             default: 0,
+    //         },
+    //     },
+    // ],
 });
 
 module.exports = model('User', userSchema);
