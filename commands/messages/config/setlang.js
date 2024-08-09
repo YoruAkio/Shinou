@@ -6,7 +6,10 @@ module.exports = {
     aliases: ['setlanguage'],
     category: 'config',
     devOnly: false,
-
+    /**
+     * @types {import("discord.js").Client} client
+     * @types {import("discord.js").Message} message
+     */
     kioRun: async (client, message, args) => {
         const lang = args[0];
 

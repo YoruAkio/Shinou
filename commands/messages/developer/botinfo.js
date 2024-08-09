@@ -12,7 +12,7 @@ module.exports = {
     name: 'botinfo',
     description: 'Get the system basic info',
     devOnly: true,
-
+    category: 'developer',
     kioRun: async (client, message, args) => {
         // STATS
         const guilds = client.guilds.cache.size;
@@ -122,6 +122,13 @@ module.exports = {
                 .setURL(
                     'https://discord.com/api/oauth2/authorize?client_id=920954192523329546&scope=bot+applications.commands&permissions=8',
                 )
+                .setStyle(ButtonStyle.Link),
+        );
+
+        components.push(
+            new ButtonBuilder()
+                .setLabel('Support Server')
+                .setURL(client.config.server_support)
                 .setStyle(ButtonStyle.Link),
         );
 

@@ -4,6 +4,11 @@ const { EmbedBuilder } = require('discord.js');
 module.exports = {
     name: 'ascii',
     description: 'Generates ascii art from text',
+    category: 'misc',
+    /**
+     * @param {import('discord.js').Client} client
+     * @param {import('discord.js').Message} message
+     */
     kioRun: async (client, message, args) => {
         const embed = new EmbedBuilder()
             .setColor(client.colors.PINK)

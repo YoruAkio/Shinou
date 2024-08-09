@@ -72,10 +72,12 @@ module.exports = {
             config: '⚙️',
             moderation: '🔨',
             fun: '🎮',
+            images: '🖼️',
             guild: '🔧',
-            devs: '👑',
+            developer: '👑',
             gtps: '🔫',
             economy: '💰',
+            misc: '🔮',
             unknown: '❓',
         };
 
@@ -124,7 +126,7 @@ module.exports = {
             **Note:**
             This message will be inactive after 30 seconds.
 
-            [**Support Server**](https://discord.gg/altea-store)`,
+            [**Support Server**](${client.config.server_support})`,
             )
             .setFooter({
                 text: client.translate.commands.embed.footer,
@@ -142,7 +144,7 @@ module.exports = {
             i.customId === 'select' && i.user.id === message.author.id;
         const collector = message.channel.createMessageComponentCollector({
             filter,
-            time: 5000,
+            time: 90000,
         });
 
         collector.on('collect', async i => {
@@ -179,7 +181,6 @@ module.exports = {
             await botMessage.edit({
                 content:
                     '<:kio_warning:1192369941920366614> • This message is now inactive.',
-                embeds: [embed],
                 components: [],
             });
         });

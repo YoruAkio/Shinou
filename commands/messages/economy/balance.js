@@ -3,14 +3,14 @@ const {
     Interaction,
     ApplicationCommandOptionType,
     Message,
-} = require("discord.js");
-const User = require("../../../models/User");
+} = require('discord.js');
+const User = require('../../../models/User');
 
 module.exports = {
-    name: "balance",
-    aliases: ["bal", "money"],
+    name: 'balance',
+    aliases: ['bal', 'money'],
     description: "See yours/someone else's balance",
-
+    category: 'economy',
     /**
      *
      * @param {Client} client
@@ -19,7 +19,7 @@ module.exports = {
     kioRun: async (client, message, args) => {
         if (!message.inGuild()) {
             message.reply({
-                content: "You can only run this command inside a server.",
+                content: 'You can only run this command inside a server.',
                 ephemeral: true,
             });
             return;
@@ -30,18 +30,19 @@ module.exports = {
 
         const user = await User.findOne({
             userId: targetUserId,
-            guildId: message.guild.id,
         });
 
         if (!user) {
             message.reply(`<@${targetUserId}> doesn't have a profile yet.`);
+
             return;
         }
 
+        const wallet = user.economy.wallet;
         message.reply(
             targetUserId === message.member.id
-                ? `Your balance is **${user.balance}**`
-                : `<@${targetUserId}>'s balance is **${user.balance}**`
+                ? `Your balance is **${wallet}**`
+                : `<@${targetUserId}>'s balance is **${wallet}**`,
         );
     },
 };

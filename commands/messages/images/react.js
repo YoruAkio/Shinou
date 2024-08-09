@@ -1,48 +1,53 @@
-const { EmbedBuilder, ApplicationCommandOptionType } = require("discord.js");
-const { getJson } = require("../../../utils/httpUtils");
-const NekosLife = require("nekos.life");
+const { EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
+const { getJson } = require('../../../utils/httpUtils');
+const NekosLife = require('nekos.life');
 const neko = new NekosLife();
 
 const choices = [
-    "hug",
-    "kiss",
-    "cuddle",
-    "feed",
-    "pat",
-    "poke",
-    "slap",
-    "smug",
-    "tickle",
-    "wink",
-    "lewd",
+    'hug',
+    'kiss',
+    'cuddle',
+    'feed',
+    'pat',
+    'poke',
+    'slap',
+    'smug',
+    'tickle',
+    'wink',
+    'lewd',
 ];
 
 module.exports = {
-    name: "react",
-    description: "Get anime reaction images",
+    name: 'react',
+    description: 'Get anime reaction images',
+    category: 'images',
+    /**
+     * @param {import("discord.js").Client} client
+     * @param {import("discord.js").Message} message
+     */
     kioRun: async (client, message, args) => {
         if (!args[0]) {
             message.channel.send(
-                "Please provide a category of reaction image!"
+                'Please provide a category of reaction image!',
             );
 
             const listCategory = new EmbedBuilder()
-                .setAuthor({ name: "Reaction Categories" })
+                .setAuthor({ name: 'Reaction Categories' })
                 .setColor(client.colors.PINK)
-                .setDescription(choices.map((ch) => `\`${ch}\``).join(", "));
+                .setDescription(choices.map(ch => `\`${ch}\``).join(', '));
 
             return message.channel.send({ embeds: [listCategory] });
         }
 
         if (!choices.includes(args[0])) {
             message.channel.send(
-                "That is not a valid category of reaction image!"
+                'That is not a valid category of reaction image!',
             );
 
             const listCategory = new EmbedBuilder()
-                .setAuthor({ name: "Reaction Categories" })
+                .setAuthor({ name: 'Reaction Categories' })
                 .setColor(client.colors.PINK)
-                .setDescription(choices.map((ch) => `\`${ch}\``).join(", "));
+                .setDescription(choices.map(ch => `\`${ch}\``).join(', '));
 
             return message.channel.send({ embeds: [listCategory] });
         }
@@ -52,11 +57,11 @@ module.exports = {
                 let imageUrl;
 
                 // some-random api
-                if (category === "wink") {
+                if (category === 'wink') {
                     const response = await getJson(
-                        "https://some-random-api.ml/animu/wink"
+                        'https://some-random-api.ml/animu/wink',
                     );
-                    if (!response.success) throw new Error("API error");
+                    if (!response.success) throw new Error('API error');
                     imageUrl = response.data.link;
                 }
 
@@ -72,9 +77,9 @@ module.exports = {
                     .setFooter({ text: `Requested By ${user.tag}` });
             } catch (ex) {
                 return new EmbedBuilder()
-                    .setAuthor({ name: "Error!" })
+                    .setAuthor({ name: 'Error!' })
                     .setColor(client.colors.PINK)
-                    .setDescription("Failed to fetch meme. Try again!")
+                    .setDescription('Failed to fetch meme. Try again!')
                     .setFooter({ text: `Requested By ${user.tag}` });
             }
         };

@@ -3,19 +3,24 @@ const {
     Interaction,
     ApplicationCommandOptionType,
     AttachmentBuilder,
-} = require("discord.js");
-const canvacord = require("canvacord");
-const calculateLevelXp = require("../../../utils/calculateLevelXp");
-const Level = require("../../../models/Level");
-const ClientUtils = require("../../../utils/clientUtils");
+} = require('discord.js');
+const canvacord = require('canvacord');
+const calculateLevelXp = require('../../../utils/calculateLevelXp');
+const Level = require('../../../models/Level');
+const ClientUtils = require('../../../utils/clientUtils');
 
 module.exports = {
-    name: "level",
+    name: 'level',
     description: "Shows your/someone's level.",
-
+    category: 'economy',
+    /**
+     *
+     * @param {Client} client
+     * @param {Interaction} message
+     */
     kioRun: async (client, message, args) => {
         if (!message.inGuild()) {
-            message.reply("You can only run this command inside a server.");
+            message.reply('You can only run this command inside a server.');
             return;
         }
 
@@ -30,14 +35,14 @@ module.exports = {
             message.reply(
                 user.id
                     ? `${user.tag} doesn't have any levels yet. Try again when they chat a little more.`
-                    : "You don't have any levels yet. Chat a little more and try again."
+                    : "You don't have any levels yet. Chat a little more and try again.",
             );
             return;
         }
 
         let allLevels = await Level.find({
             guildId: message.guild.id,
-        }).select("-_id userId level xp");
+        }).select('-_id userId level xp');
 
         allLevels.sort((a, b) => {
             if (a.level === b.level) {
@@ -48,7 +53,7 @@ module.exports = {
         });
 
         let currentRank =
-            allLevels.findIndex((lvl) => lvl.userId === user.id) + 1;
+            allLevels.findIndex(lvl => lvl.userId === user.id) + 1;
 
         const rank = new canvacord.Rank()
             .setAvatar(user.displayAvatarURL({ size: 256 }))
@@ -56,9 +61,9 @@ module.exports = {
             .setLevel(fetchedLevel.level)
             .setCurrentXP(fetchedLevel.xp)
             .setRequiredXP(calculateLevelXp(fetchedLevel.level))
-            .setProgressBar("#FFC300", "COLOR")
+            .setProgressBar(client.colors.PINK, 'COLOR')
             .setUsername(user.username)
-            .setDiscriminator(user.discriminator);
+            .setCustomStatusColor(client.colors.PINK);
 
         const data = await rank.build();
         const attachment = new AttachmentBuilder(data);
