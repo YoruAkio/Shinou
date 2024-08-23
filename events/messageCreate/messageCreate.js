@@ -26,10 +26,6 @@ module.exports = {
             return custom;
         };
 
-        const guildLanguage = await prefixModel.findOne({
-            guildId: message.guild.id,
-        });
-
         const userData = await userModel.findOne({
             userId: message.author.id,
         });

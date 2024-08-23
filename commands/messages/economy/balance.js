@@ -34,7 +34,6 @@ module.exports = {
 
         if (!user) {
             message.reply(`<@${targetUserId}> doesn't have a profile yet.`);
-
             return;
         }
 
