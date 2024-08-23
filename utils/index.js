@@ -6,5 +6,4 @@ module.exports = {
     databaseUtils: require("./databaseUtils"),
     httpUtils: require("./httpUtils"),
     Logger: require("./Logger"),
-    PinoLogger: require("./PinoLogger"),
 };
