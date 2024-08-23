@@ -47,8 +47,8 @@ client.slashCommands = new Collection();
 
 client.colors = require('./conf.js').Colors;
 client.config = require('./conf.js').Bot;
-client.translate = require('./languages/en.json')
-client.utils = require('./utils/botUtils.js')
+client.placeholder = require('./placeholder/commands.json');
+client.utils = require('./utils/botUtils.js');
 
 require('./utils/consoleRunning.js');
 require('./handlers/index.js')(client);
