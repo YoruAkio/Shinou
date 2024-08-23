@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require('mongoose');
 
 const guildSchema = new Schema({
     guildId: {
@@ -9,12 +9,7 @@ const guildSchema = new Schema({
     prefix: {
         type: String,
         required: true,
-        default: "-",
-    },
-    language: {
-        type: String,
-        required: true,
-        default: "en",
+        default: '-',
     },
     levelLogs: {
         type: String,
@@ -23,4 +18,4 @@ const guildSchema = new Schema({
     },
 });
 
-module.exports = model("Guild", guildSchema);
+module.exports = model('Guild', guildSchema);
