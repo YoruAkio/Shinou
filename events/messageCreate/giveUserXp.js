@@ -1,5 +1,5 @@
 const { Client, Message } = require('discord.js');
-const calculateLevelXp = require('../../utils/calculateLevelXp');
+const botUtils = require('../../utils/botUtils');
 const Level = require('../../models/Level');
 const Guild = require('../../models/Guild');
 const cooldowns = new Set();
@@ -51,7 +51,7 @@ module.exports = {
             if (level) {
                 level.xp += xpToGive;
 
-                if (level.xp > calculateLevelXp(level.level)) {
+                if (level.xp > botUtils.calculateLevelXp(level.level)) {
                     level.xp = 0;
                     level.level += 1;
 
