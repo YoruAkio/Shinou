@@ -61,7 +61,9 @@ module.exports = {
                     const response = await getJson(
                         'https://some-random-api.ml/animu/wink',
                     );
-                    if (!response.success) throw new Error('API error');
+                    if (!response.success) {
+                        return message.reply('Failed to fetch meme. Try again!, Error: API Error');
+                    }
                     imageUrl = response.data.link;
                 }
 

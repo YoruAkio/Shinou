@@ -23,8 +23,8 @@ module.exports = class HttpUtils {
                 data: json,
             };
         } catch (ex) {
-            debug(`Url: ${url}`);
-            error(`getJson`, ex);
+            console.log(`Url: ${url}`);
+            console.log(`function getJson got an error: ${ex}`);
             return {
                 success: false,
             };

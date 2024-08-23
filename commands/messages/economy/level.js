@@ -5,7 +5,7 @@ const {
     AttachmentBuilder,
 } = require('discord.js');
 const canvacord = require('canvacord');
-const calculateLevelXp = require('../../../utils/calculateLevelXp');
+const botUtils = require('../../../utils/botUtils');
 const Level = require('../../../models/Level');
 
 module.exports = {
@@ -59,7 +59,7 @@ module.exports = {
             .setRank(currentRank)
             .setLevel(fetchedLevel.level)
             .setCurrentXP(fetchedLevel.xp)
-            .setRequiredXP(calculateLevelXp(fetchedLevel.level))
+            .setRequiredXP(botUtils.calculateLevelXp(fetchedLevel.level))
             .setProgressBar(client.colors.PINK, 'COLOR')
             .setUsername(user.username)
             .setCustomStatusColor(client.colors.PINK);

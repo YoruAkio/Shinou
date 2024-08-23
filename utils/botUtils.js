@@ -1,5 +1,4 @@
 const { EmbedBuilder } = require('discord.js');
-const calculateLevelXp = require('./calculateLevelXp');
 
 module.exports = {
     errorBuilder: function (client, message, errorText, otherText) {
