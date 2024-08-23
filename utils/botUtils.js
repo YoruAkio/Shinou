@@ -14,7 +14,7 @@ module.exports = {
             )
             .setColor(client.colors.PINK)
             .setFooter({
-                text: client.translate.commands.embed.footer,
+                text: client.placeholder.commands.embed.footer,
                 iconURL: message.author.displayAvatarURL({ dynamic: true }),
             })
             .setTimestamp();
@@ -27,7 +27,7 @@ module.exports = {
             )
             .setColor(client.colors.PINK)
             .setFooter({
-                text: client.translate.commands.embed.footer,
+                text: client.placeholder.commands.embed.footer,
                 iconURL: message.author.displayAvatarURL({ dynamic: true }),
             })
             .setTimestamp();
@@ -40,7 +40,4 @@ module.exports = {
         }
         return result;
     },
-    translateDescription: function (client, command) {
-        return client.translate.commands[command].description;
-    }
 };
