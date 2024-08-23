@@ -52,13 +52,6 @@ module.exports = {
             console.log('New user saved to the database.');
         }
 
-        if (guildLanguage) {
-            client.translate = require(`../../languages/${guildLanguage.language}.json`);
-            console.log(guildLanguage.language);
-        } else {
-            client.translate = require('../../languages/en.json');
-        }
-
         const prefixData = await client.prefix(message);
 
         if (message.content.includes(`${client.user.id}`)) {
