@@ -24,7 +24,7 @@ module.exports = {
                 : emojiPing.bad;
 
         message
-            .reply({ content: client.translate.commands.waiting })
+            .reply({ content: client.placeholder.commands.waiting })
             .then(msg => {
                 const clientPing =
                     msg.createdTimestamp - message.createdTimestamp;
@@ -39,7 +39,7 @@ module.exports = {
                     embeds: [
                         new EmbedBuilder()
                             .setDescription(
-                                client.translate.commands.ping.reply
+                                client.placeholder.commands.ping.reply
                                     .replace('{client}', client.user.username)
                                     .replace('{apiPingEmoji}', apiPingEmoji)
                                     .replace('{apiPing}', apiPing)
@@ -51,7 +51,7 @@ module.exports = {
                             )
                             .setColor(client.colors.PINK)
                             .setFooter({
-                                text: client.translate.commands.embed.footer,
+                                text: client.placeholder.commands.embed.footer,
                                 iconURL: message.author.displayAvatarURL({
                                     dynamic: true,
                                 }),

@@ -5,7 +5,7 @@ module.exports = {
     name: 'guildinfo',
     description: 'Get information about the guild',
     category: 'info',
-    
+
     /**
      * @param {import("discord.js").Client} client
      * @param {import("discord.js").Message} message
@@ -57,7 +57,7 @@ module.exports = {
                 },
             ])
             .setColor(client.colors.PINK)
-            .setFooter({ text: client.translate.commands.embed.footer });
+            .setFooter({ text: client.placeholder.commands.embed.footer });
 
         message.reply({ embeds: [embed] });
     },

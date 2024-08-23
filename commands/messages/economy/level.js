@@ -7,7 +7,6 @@ const {
 const canvacord = require('canvacord');
 const calculateLevelXp = require('../../../utils/calculateLevelXp');
 const Level = require('../../../models/Level');
-const ClientUtils = require('../../../utils/clientUtils');
 
 module.exports = {
     name: 'level',

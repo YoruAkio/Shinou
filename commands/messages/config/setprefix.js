@@ -20,8 +20,8 @@ module.exports = {
             return client.utils.errorBuilder(
                 client,
                 message,
-                client.translate.commands.setprefix.noargs,
-                client.translate.commands.setprefix.prefix,
+                client.placeholder.commands.setprefix.noargs,
+                client.placeholder.commands.setprefix.prefix,
             );
 
         const guild = await GuildModels.findOne({ guildId: message.guild.id });
@@ -39,7 +39,7 @@ module.exports = {
         return client.utils.successBuilder(
             client,
             message,
-            client.translate.commands.setprefix.reply
+            client.placeholder.commands.setprefix.reply
                 .replace('{authorid}', message.author.id)
                 .replace('{prefix}', prefix),
         );

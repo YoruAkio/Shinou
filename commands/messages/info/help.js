@@ -21,6 +21,10 @@ module.exports = {
                 client.commands.find(
                     cmd => cmd.aliases && cmd.aliases.includes(args[0]),
                 );
+            const aliases = command.aliases
+                ? command.aliases.join(', ')
+                : 'None';
+            const devOnly = command.devOnly ? 'Yes' : 'No';
             if (command) {
                 const embed = new EmbedBuilder()
                     .setTitle(`Command: ${command.name}`)
@@ -44,12 +48,12 @@ module.exports = {
                         },
                         {
                             name: 'Aliases',
-                            value: `\`${command.aliases.join(', ')}\``,
+                            value: `\`${aliases}\``,
                             inline: true,
                         },
                         {
                             name: 'Dev Only',
-                            value: `\`${command.devOnly}\``,
+                            value: `\`${devOnly}\``,
                             inline: true,
                         },
                     )
@@ -57,7 +61,7 @@ module.exports = {
                         client.user.displayAvatarURL({ dynamic: true }),
                     )
                     .setFooter({
-                        text: client.translate.commands.embed.footer,
+                        text: client.placeholder.commands.embed.footer,
                         iconURL: client.user.displayAvatarURL({
                             dynamic: true,
                         }),
@@ -129,7 +133,7 @@ module.exports = {
             [**Support Server**](${client.config.server_support})`,
             )
             .setFooter({
-                text: client.translate.commands.embed.footer,
+                text: client.placeholder.commands.embed.footer,
                 iconURL: client.user.displayAvatarURL({ dynamic: true }),
             })
             .setTimestamp()
@@ -167,7 +171,7 @@ module.exports = {
                         .join('\n'),
                 )
                 .setFooter({
-                    text: client.translate.commands.embed.footer,
+                    text: client.placeholder.commands.embed.footer,
                     iconURL: client.user.displayAvatarURL({ dynamic: true }),
                 })
                 .setTimestamp()
